@@ -24,7 +24,7 @@ const validationSchema = yup.object().shape({
 
 
 export default function BlogForm(props) {
-
+    console.log({ props });
     const { data, type } = props;
     const initialValues = {
         author: data?.author?.id || '',
@@ -45,15 +45,13 @@ export default function BlogForm(props) {
     const submitForm = (values) => {
         setIsRequesting(true);
 
+        //convert tags splitted by comma(,) to array
         values.tags = values.tags?.split(',') || []
-
-        alert(type);
         post(
             `blog/${data._id || ''}`,
             values, type === 'edit' ? 'Blog edited successfully!' : 'Blog added successfully!'
         )
             .then(response => {
-                // return <Redirect to='/admin/blog' />
                 history.push("/admin/blog");
             })
             .catch(error => { })
@@ -68,6 +66,7 @@ export default function BlogForm(props) {
             onSubmit={(values) => { submitForm(values) }}
             validationSchema={validationSchema}
             initialValues={initialValues}
+            enableReinitialize={true}
         >
             {props => {
                 const {
@@ -91,11 +90,12 @@ export default function BlogForm(props) {
                                     <Select
                                         onBlur={handleBlur}
                                         onChange={handleChange}
-                                        value={values.author || ''}
+                                        value={values.author}
                                         label="author"
                                         inputProps={{
                                             name: 'author',
                                         }}
+                                        required
                                     >
                                         <option value='' />
 
@@ -135,6 +135,6 @@ export default function BlogForm(props) {
 
 // Set default props
 BlogForm.defaultProps = {
-    data: {},
+    data: null,
     type: "create"
 };
