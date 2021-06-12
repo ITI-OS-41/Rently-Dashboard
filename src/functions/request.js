@@ -14,8 +14,8 @@ const post = async (url, data, successMessage) => await axios.post(url, data)
                 toast.error(errors[key])
             }
         }
-        return errors
-        // throw new Error(errors)
+        // return errors
+        throw new Error(errors)
     })
 
 const get = async (url, successMessage) => await axios.get(url)
@@ -30,8 +30,8 @@ const get = async (url, successMessage) => await axios.get(url)
                 toast.error(errors[key])
             }
         }
-        return errors
-        // throw new Error(errors)
+        // return errors
+        throw new Error(errors)
     })
 
 
@@ -47,8 +47,8 @@ const del = async (url, successMessage) => await axios.delete(url)
                 toast.error(errors[key])
             }
         }
-        return errors
-        // throw new Error(errors)
+        // return errors
+        throw new Error(errors)
     })
 
 export { post, get, del }

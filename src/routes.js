@@ -10,6 +10,7 @@ import Empty from "views/examples/Empty";
 import BlogCreate from "views/blog/BlogCreate";
 import BlogList from "views/blog/BlogList";
 import BlogShow from "views/blog/BlogShow";
+import BlogEdit from "views/blog/BlogEdit";
 
 var routes = [
 
@@ -35,6 +36,14 @@ var routes = [
     name: "Blog Show",
     icon: "far fa-newspaper text-blue",
     component: BlogShow,
+    layout: "/admin",
+    exact: true
+  },
+  {
+    path: "/blog/:id/edit",
+    name: "Blog Edit",
+    icon: "far fa-newspaper text-blue",
+    component: BlogEdit,
     layout: "/admin",
     exact: false
   },

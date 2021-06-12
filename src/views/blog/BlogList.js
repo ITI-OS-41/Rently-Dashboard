@@ -80,9 +80,11 @@ export default () => {
               </IconButton>
             </Link>
 
-            <IconButton aria-label="edit" className="mx-1">
-              <CreateOutlinedIcon />
-            </IconButton>
+            <Link to={'blog/' + params.id + '/edit'}>
+              <IconButton aria-label="edit" className="mx-1">
+                <CreateOutlinedIcon />
+              </IconButton>
+            </Link>
 
             <IconButton
               onClick={() => { handleDeleteBlog(params.id) }}

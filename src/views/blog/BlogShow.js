@@ -21,10 +21,8 @@ import { get } from "functions/request";
 
 
 export default (props) => {
-  const [copiedText, setCopiedText] = useState();
   const [item, setItem] = useState(null);
   const id = props.match.params.id
-  console.log(id)
 
   useEffect(() => {
     get(`/blog/${id}`)

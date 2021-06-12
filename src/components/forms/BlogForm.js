@@ -7,7 +7,7 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 import { get, post } from '../../functions/request';
 import history from '../../functions/history'
-import SubmitButton from 'components/shared/SubmitButton';
+import SubmitButton from '../shared/SubmitButton';
 
 const validationSchema = yup.object().shape({
     title: yup
@@ -21,17 +21,18 @@ const validationSchema = yup.object().shape({
         .required('Description is required'),
 })
 
-const initialValues = {
-    author: '',
-    title: 'title title title',
-    description: 'description description description description description',
-    tags: [],
-};
 
 
-export default function BlogForm({ props }) {
+export default function BlogForm(props) {
+
+    const { data, type } = props;
+    const initialValues = {
+        author: data?.author?.id || '',
+        title: data?.title || '',
+        description: data?.description || '',
+        tags: data?.tags?.join() || ''
+    };
     const [isRequesting, setIsRequesting] = useState(false)
-    const [chipData, setChipData] = React.useState([]);
     const [users, setUsers] = React.useState([]);
 
     useEffect(() => {
@@ -41,24 +42,16 @@ export default function BlogForm({ props }) {
             })
     }, [])
 
-    const handleDeleteTag = (chipToDelete) => () => {
-        setChipData((chips) => chips.filter((chip) => chip !== chipToDelete));
-    };
-    const handleAddTag = (e) => {
-        if (e.which === 32) {
-            let val = e.target.value.trim()
-            if (val && chipData.indexOf(val) === -1) {
-                setChipData((prevState => [...prevState, val]))
-                e.target.value = ''
-            }
-        }
-    }
-
     const submitForm = (values) => {
         setIsRequesting(true);
-        values.tags = chipData;
 
-        post('blog', values, "Blog added successfully!")
+        values.tags = values.tags?.split(',') || []
+
+        alert(type);
+        post(
+            `blog/${data._id || ''}`,
+            values, type === 'edit' ? 'Blog edited successfully!' : 'Blog added successfully!'
+        )
             .then(response => {
                 // return <Redirect to='/admin/blog' />
                 history.push("/admin/blog");
@@ -98,15 +91,16 @@ export default function BlogForm({ props }) {
                                     <Select
                                         onBlur={handleBlur}
                                         onChange={handleChange}
-
-                                        value={values.author}
+                                        value={values.author || ''}
                                         label="author"
                                         inputProps={{
                                             name: 'author',
                                         }}
                                     >
+                                        <option value='' />
+
                                         {users.map(user => {
-                                            return (<option aria-label={user.username} value={user._id}>{user.username}</option>)
+                                            return (<option key={user._id} aria-label={user.username} value={user._id}>{user.username}</option>)
                                         })}
                                     </Select>
                                     {touched.author && <FormHelperText>{errors.author}</FormHelperText>}
@@ -121,24 +115,13 @@ export default function BlogForm({ props }) {
                                 <TextField variant="outlined" fullWidth multiline rowsMax={8} id="description" name="description" label="description" value={values.description} onBlur={handleBlur} onChange={handleChange} error={touched.description && Boolean(errors.description)} helperText={touched.description && errors.description} />
                             </Grid>
                             <Grid item xs={12}>
-                                <TextField variant="outlined" fullWidth id="tag" name="tag" label="tag" value={values.tag} onKeyUp={handleAddTag} error={touched.tag && Boolean(errors.tag)} helperText={touched.tag && errors.tag} />
-                                {chipData.map((data) => {
-                                    return (
-                                        <span key={data}>
-                                            <Chip
-                                                style={{ marginRight: '0.5rem' }}
-                                                label={data}
-                                                onDelete={handleDeleteTag(data)}
-                                            />
-                                        </span>
-                                    );
-                                })}
+                                <TextField variant="outlined" fullWidth id="tags" name="tags" label="tags" value={values.tags} onBlur={handleBlur} onChange={handleChange} error={touched.tags && Boolean(errors.tags)} helperText={touched.tags && errors.tags} />
                             </Grid>
                         </Grid>
 
                         <Grid container justify="flex-end">
                             <Grid item>
-                                <SubmitButton isRequesting={isRequesting} btnText="Create Post" />
+                                <SubmitButton isRequesting={isRequesting} type={type} />
                             </Grid>
                         </Grid>
                     </form>
@@ -148,3 +131,10 @@ export default function BlogForm({ props }) {
     )
 }
 
+
+
+// Set default props
+BlogForm.defaultProps = {
+    data: {},
+    type: "create"
+};
