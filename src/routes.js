@@ -2,7 +2,6 @@ import Index from "views/Index.js";
 import Profile from "views/examples/Profile.js";
 import Maps from "views/examples/Maps.js";
 import Register from "views/examples/Register.js";
-import Notification from "views/examples/Notification.js";
 import Login from "views/examples/Login.js";
 import Tables from "views/examples/Tables.js";
 import Icons from "views/examples/Icons.js";
@@ -11,6 +10,9 @@ import BlogCreate from "views/blog/BlogCreate";
 import BlogList from "views/blog/BlogList";
 import BlogShow from "views/blog/BlogShow";
 import BlogEdit from "views/blog/BlogEdit";
+
+import NotificationList from "views/notification/NotificationList";
+
 
 var routes = [
 
@@ -51,8 +53,9 @@ var routes = [
     path: "/notification",
     name: "Notification",
     icon: "ni ni-planet text-blue",
-    component: Notification,
+    component: NotificationList,
     layout: "/admin",
+    showInSidebar: true
   },
   {
     path: "/index",

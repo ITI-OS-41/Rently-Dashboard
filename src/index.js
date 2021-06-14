@@ -26,3 +26,7 @@ ReactDOM.render(
   </>,
   document.getElementById("root")
 );
+
+
+
+// TODO: Change all copyrights and craetive-tim names to ours

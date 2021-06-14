@@ -34,19 +34,19 @@ export default () => {
   const [isLoading, setIsLoading] = useState(true)
 
 
-  const handleDeleteBlog = (id) => {
+  const handleDeleteNotification = (id) => {
     const conf = window.confirm("are you sure you want to delete?")
     if (!conf) {
       return;
     }
-    del(`blog/${id}`, "Blog deleted successfully!")
+    del(`notification/${id}`, "Notification deleted successfully!")
       .then(() => {
         setDemmy(prevState => (prevState + 1))
       })
   }
 
   useEffect(() => {
-    get('/blog')
+    get('/notification')
       .then(response => {
         let res = response.data
 
@@ -62,18 +62,31 @@ export default () => {
 
 
   const columns = [
-    { field: 'title', headerName: 'Title', width: `${DATAGRID_WIDTH * 0.3}px` },
-    { field: 'description', headerName: 'Description', width: `${DATAGRID_WIDTH * 0.55}px` },
+    {
+      field: 'sender', headerName: 'Sender',
+      width: `${DATAGRID_WIDTH * 0.2}px`,
+      renderCell: (params) => {
+        return (params.row.sender.username)
+      },
+    },
+    {
+      field: 'receiver', headerName: 'Receiver',
+      width: `${DATAGRID_WIDTH * 0.2}px`,
+      renderCell: (params) => {
+        return (params.row.receiver.username)
+      },
+    },
+    { field: 'content', headerName: 'Content', width: `${DATAGRID_WIDTH * 0.4}px` },
     {
       field: "actions",
       headerName: "Actions",
       sortable: false,
-      width: `${DATAGRID_WIDTH * 0.20}px`,
+      width: `${DATAGRID_WIDTH * 0.2}px`,
       disableClickEventBubbling: true,
       renderCell: (params) => {
         return (
           <>
-            <Link to={'blog/' + params.id}>
+            <Link to={'notification/' + params.id}>
               <Tooltip title="Show" aria-label="show">
                 <IconButton
                   aria-label="show" className="mx-1">
@@ -82,7 +95,7 @@ export default () => {
               </Tooltip>
             </Link>
 
-            <Link to={'blog/' + params.id + '/edit'}>
+            <Link to={'notification/' + params.id + '/edit'}>
               <Tooltip title="Edit" aria-label="edit">
                 <IconButton aria-label="edit" className="mx-1">
                   <CreateOutlinedIcon />
@@ -92,7 +105,7 @@ export default () => {
 
             <Tooltip title="Edit" aria-label="edit">
               <IconButton
-                onClick={() => { handleDeleteBlog(params.id) }}
+                onClick={() => { handleDeleteNotification(params.id) }}
                 aria-label="delete" className="mx-1">
                 <DeleteOutlinedIcon />
               </IconButton>
@@ -113,7 +126,7 @@ export default () => {
           <div className="col">
             <Card className="shadow px-3 pb-4">
               <CardHeader className="bg-transparent d-flex justify-content-between">
-                <h3 className="mb-0">List Blog</h3>
+                <h3 className="mb-0">List Notification</h3>
                 <Link to="blog/create">
                   <Button variant="contained" color="primary" className="bg-primary">
                     <AddCircleOutlineOutlinedIcon className="mr-1" />
@@ -121,8 +134,8 @@ export default () => {
                 </Button>
                 </Link>
               </CardHeader>
-              <div style={{ height: '70vh', width: '100%' }}>
-                <DataGrid loading={isLoading} rows={rows} columns={columns} pageSize={DATAGRID_RESULTS_PER_PAGE} />
+              <div style={{ height: '70vh', width: '100%' }} >
+                <DataGrid columnBuffer={3} loading={isLoading} rows={rows} columns={columns} pageSize={DATAGRID_RESULTS_PER_PAGE} />
               </div>
             </Card>
           </div>
