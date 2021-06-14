@@ -60,22 +60,14 @@ const isAdmin = (token) => {
     return getUserType(token) === 'admin'
 }
 
-const uploadImage = async (image) => {
+const uploadImage = async (image, folder) => {
     console.log({ image });
     const data = new FormData();
     data.append("file", image);
-    data.append("upload_preset", "rently-upload-service-category");
+    data.append("upload_preset", `rently-upload-service-${folder}`);
     data.append("cloud_name", CLOUDINARY_CLOUD_NAME);
 
     return await post(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`, data, 'image uploaded successfully!')
-    // .then(res => {
-    //     console.log({ url: res.data.url });
-    //     return res.data.url;
-    // })
-    // .catch(err => {
-    //     console.log({ err });
-    //     return null;
-    // })
 
 }
 

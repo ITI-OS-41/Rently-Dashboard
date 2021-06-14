@@ -23,6 +23,10 @@ import CategoryList from "views/category/CategoryList";
 import CategoryCreate from "views/category/CategoryCreate";
 import CategoryShow from "views/category/CategoryShow";
 import CategoryEdit from "views/category/CategoryEdit";
+import SubCategoryList from "views/subcategory/SubCategoryList";
+import SubCategoryCreate from "views/subcategory/SubCategoryCreate";
+import SubCategoryShow from "views/subcategory/SubCategoryShow";
+import SubCategoryEdit from "views/subcategory/SubCategoryEdit";
 
 
 var routes = [
@@ -165,6 +169,43 @@ var routes = [
     name: "Category Blog",
     icon: "ni ni-planet text-blue",
     component: CategoryEdit,
+    layout: "/admin",
+    showInSidebar: false
+  },
+
+
+
+  //* SubCategory
+  {
+    path: "/subcategory",
+    name: "SubCategory",
+    icon: "fas fa-cubes text-orange",
+    component: SubCategoryList,
+    layout: "/admin",
+    showInSidebar: true,
+    exact: true
+  },
+  {
+    path: "/subcategory/create",
+    name: "SubCategory Create",
+    icon: "ni ni-planet text-blue",
+    component: SubCategoryCreate,
+    layout: "/admin",
+    showInSidebar: false
+  },
+  {
+    path: "/subcategory/:id",
+    name: "Category Show",
+    icon: "far fa-newspaper text-blue",
+    component: SubCategoryShow,
+    layout: "/admin",
+    exact: true
+  },
+  {
+    path: "/subcategory/:id/edit",
+    name: "SubCategory Blog",
+    icon: "ni ni-planet text-blue",
+    component: SubCategoryEdit,
     layout: "/admin",
     showInSidebar: false
   },

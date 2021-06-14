@@ -10,7 +10,7 @@ import { uploadImage } from '../../functions/helpers';
 import history from '../../functions/history'
 import SubmitButton from '../shared/SubmitButton';
 
-const modelName = 'category';
+const modelName = 'subcategory';
 
 
 const validationSchema = yup.object().shape({
@@ -20,19 +20,35 @@ const validationSchema = yup.object().shape({
     description: yup
         .string('Enter description')
         .required('description is required'),
+    category: yup
+        .string('Enter category')
+        .required('category is required'),
 })
 
 
 
-export default function CategoryForm(props) {
+export default function SubCategoryForm(props) {
     const { data, type } = props;
     const initialValues = {
         name: data?.name || '',
         description: data?.description || '',
         photo: data?.photo || '',
+        category: data?.category?._id || '',
     };
     const [isRequesting, setIsRequesting] = useState(false)
     const [imagePreview, setImagePreview] = useState(null)
+    const [categories, setCategories] = React.useState([]);
+
+
+    useEffect(() => {
+        get('/category')
+            .then(response => {
+                setCategories(response.data)
+            })
+    }, [])
+
+
+
 
     const setImage = (event) => {
         const file = event.currentTarget.files[0]
@@ -42,7 +58,6 @@ export default function CategoryForm(props) {
     };
     const submitForm = async (values) => {
         setIsRequesting(true);
-
 
         if (values.photo) {
             await uploadImage(values.photo, modelName)
@@ -86,6 +101,7 @@ export default function CategoryForm(props) {
                 return (
                     <form onSubmit={handleSubmit}>
                         <Grid container spacing={2}>
+
                             {(imagePreview || values.photo) && (<img src={imagePreview || values.photo || ''} height="250" />)}
 
                             <Grid item xs={12}>
@@ -105,6 +121,31 @@ export default function CategoryForm(props) {
                                 <TextField variant="outlined" fullWidth multiline rowsMax={8} id="description" name="description" label="description" value={values.description} onBlur={handleBlur} onChange={handleChange} error={touched.description && Boolean(errors.description)} helperText={touched.description && errors.description} />
                             </Grid>
 
+                            <Grid item xs={12}>
+                                <FormControl
+                                    error={touched.category && Boolean(errors.category)}
+                                    fullWidth variant="outlined"
+                                >
+                                    <InputLabel>category</InputLabel>
+                                    <Select
+                                        onBlur={handleBlur}
+                                        onChange={handleChange}
+                                        value={values.category}
+                                        label="category"
+                                        inputProps={{
+                                            name: 'category',
+                                        }}
+                                    >
+                                        <option value='' />
+
+                                        {categories.map(category => {
+                                            return (<option key={category._id} aria-label={category.name} value={category._id}>{category.name}</option>)
+                                        })}
+                                    </Select>
+                                    {touched.sender && <FormHelperText>{errors.sender}</FormHelperText>}
+                                </FormControl>
+                            </Grid>
+
                         </Grid>
 
                         <Grid container justify="flex-end">
@@ -122,7 +163,7 @@ export default function CategoryForm(props) {
 
 
 // Set default props
-CategoryForm.defaultProps = {
+SubCategoryForm.defaultProps = {
     data: null,
     type: "create"
 };

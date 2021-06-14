@@ -11,7 +11,7 @@ import { TextField, Grid } from '@material-ui/core';
 import Header from "components/Headers/Header.js";
 import { get } from "functions/request";
 
-const modelName = 'category';
+const modelName = 'subcategory';
 
 
 export default (props) => {
@@ -37,7 +37,7 @@ export default (props) => {
           <div className="col">
             <Card className="shadow">
               <CardHeader className="bg-transparent">
-                <h3 className="mb-0">{item.name}</h3>
+                <h3 className="mb-0">{item.name} ({item.category.name})</h3>
               </CardHeader>
               <CardBody>
                 <img src={item.photo} className="img-fluid mb-4 mx-auto" />
