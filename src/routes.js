@@ -15,10 +15,15 @@ import NotificationList from "views/notification/NotificationList";
 import NotificationCreate from "views/notification/NotificationCreate";
 import NotificationEdit from "views/notification/NotificationEdit";
 import NotificationShow from "views/notification/NotificationShow";
+import FAQList from "views/faq/FAQList";
+import FAQCreate from "views/faq/FAQCreate";
+import FAQShow from "views/faq/FAQShow";
+import FAQEdit from "views/faq/FAQEdit";
 
 
 var routes = [
 
+  //* Blog
   {
     path: "/blog",
     name: "Blogs",
@@ -52,10 +57,12 @@ var routes = [
     layout: "/admin",
     exact: false
   },
+
+  //* Notification
   {
     path: "/notification",
     name: "Notification",
-    icon: "ni ni-planet text-blue",
+    icon: "far fa-bell text-warning",
     component: NotificationList,
     layout: "/admin",
     showInSidebar: true,
@@ -85,6 +92,45 @@ var routes = [
     layout: "/admin",
     showInSidebar: false
   },
+
+
+  //* FAQ
+  {
+    path: "/faq",
+    name: "FAQ",
+    icon: "fas fa-question text-info",
+    component: FAQList,
+    layout: "/admin",
+    showInSidebar: true,
+    exact: true
+  },
+  {
+    path: "/faq/create",
+    name: "FAQ Create",
+    icon: "ni ni-planet text-blue",
+    component: FAQCreate,
+    layout: "/admin",
+    showInSidebar: false
+  },
+  {
+    path: "/faq/:id",
+    name: "FAQ Show",
+    icon: "far fa-newspaper text-blue",
+    component: FAQShow,
+    layout: "/admin",
+    exact: true
+  },
+  {
+    path: "/faq/:id/edit",
+    name: "FAQ Blog",
+    icon: "ni ni-planet text-blue",
+    component: FAQEdit,
+    layout: "/admin",
+    showInSidebar: false
+  },
+
+
+
   {
     path: "/index",
     name: "Dashboard",
