@@ -1,21 +1,14 @@
 import React, { useEffect, useState } from "react";
-// react component that copies the given text inside your clipboard
-import { CopyToClipboard } from "react-copy-to-clipboard";
 // reactstrap components
 import {
   Card,
   CardHeader,
   CardBody,
   Container,
-  Row,
-  Col,
-  UncontrolledTooltip,
-  Button,
-  Spinner
+  Row
 } from "reactstrap";
 import { TextField, Grid } from '@material-ui/core';
 import Header from "components/Headers/Header.js";
-import BlogForm from '../../components/forms/BlogForm'
 import { get } from "functions/request";
 
 const modelName = 'notification';
