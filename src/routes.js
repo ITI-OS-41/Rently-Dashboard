@@ -19,6 +19,10 @@ import FAQList from "views/faq/FAQList";
 import FAQCreate from "views/faq/FAQCreate";
 import FAQShow from "views/faq/FAQShow";
 import FAQEdit from "views/faq/FAQEdit";
+import CategoryList from "views/category/CategoryList";
+import CategoryCreate from "views/category/CategoryCreate";
+import CategoryShow from "views/category/CategoryShow";
+import CategoryEdit from "views/category/CategoryEdit";
 
 
 var routes = [
@@ -125,6 +129,42 @@ var routes = [
     name: "FAQ Blog",
     icon: "ni ni-planet text-blue",
     component: FAQEdit,
+    layout: "/admin",
+    showInSidebar: false
+  },
+
+
+  //* Category
+  {
+    path: "/category",
+    name: "Category",
+    icon: "fas fa-cube text-dark",
+    component: CategoryList,
+    layout: "/admin",
+    showInSidebar: true,
+    exact: true
+  },
+  {
+    path: "/category/create",
+    name: "Category Create",
+    icon: "ni ni-planet text-blue",
+    component: CategoryCreate,
+    layout: "/admin",
+    showInSidebar: false
+  },
+  {
+    path: "/category/:id",
+    name: "Category Show",
+    icon: "far fa-newspaper text-blue",
+    component: CategoryShow,
+    layout: "/admin",
+    exact: true
+  },
+  {
+    path: "/category/:id/edit",
+    name: "Category Blog",
+    icon: "ni ni-planet text-blue",
+    component: CategoryEdit,
     layout: "/admin",
     showInSidebar: false
   },

@@ -6,16 +6,17 @@ import Chip from '@material-ui/core/Chip';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import { get, post } from '../../functions/request';
+import { uploadImage } from '../../functions/helpers';
 import history from '../../functions/history'
 import SubmitButton from '../shared/SubmitButton';
 
-const modelName = 'faq';
+const modelName = 'category';
 
 
 const validationSchema = yup.object().shape({
-    title: yup
-        .string('Enter title')
-        .required('title is required'),
+    name: yup
+        .string('Enter name')
+        .required('name is required'),
     description: yup
         .string('Enter description')
         .required('description is required'),
@@ -23,28 +24,42 @@ const validationSchema = yup.object().shape({
 
 
 
-export default function FAQForm(props) {
+export default function CategoryForm(props) {
     const { data, type } = props;
     const initialValues = {
-        title: data?.title || '',
+        name: data?.name || '',
         description: data?.description || '',
+        photo: data?.photo || '',
     };
     const [isRequesting, setIsRequesting] = useState(false)
+    const [imagePreview, setImagePreview] = useState(null)
 
+    const setImage = (event) => {
+        const file = event.currentTarget.files[0]
+        if (file) {
+            setImagePreview(URL.createObjectURL(file))
+        }
+    };
     const submitForm = (values) => {
-        setIsRequesting(true);
 
-        post(
-            `${modelName}/${data?._id || ''}`,
-            values, type === 'edit' ? `${modelName} edited successfully!` : `${modelName} added successfully!`
-        )
-            .then(response => {
-                history.push(`/admin/${modelName}`);
-            })
-            .catch(error => { })
-            .finally(() => {
-                setIsRequesting(false);
-            })
+
+        console.log(values);
+
+        uploadImage(values.photo)
+
+        // setIsRequesting(true);
+
+        // post(
+        //     `${modelName}/${data?._id || ''}`,
+        //     values, type === 'edit' ? `${modelName} edited successfully!` : `${modelName} added successfully!`
+        // )
+        //     .then(response => {
+        //         history.push(`/admin/${modelName}`);
+        //     })
+        //     .catch(error => { })
+        //     .finally(() => {
+        //         setIsRequesting(false);
+        //     })
     }
 
 
@@ -63,14 +78,24 @@ export default function FAQForm(props) {
                     isSubmitting,
                     handleChange,
                     handleBlur,
-                    handleSubmit
+                    handleSubmit,
+                    setFieldValue
                 } = props;
                 return (
                     <form onSubmit={handleSubmit}>
                         <Grid container spacing={2}>
+                            {imagePreview && (<img src={imagePreview} height="250" />)}
 
                             <Grid item xs={12}>
-                                <TextField variant="outlined" fullWidth id="title" name="title" label="title" value={values.title} onBlur={handleBlur} onChange={handleChange} error={touched.title && Boolean(errors.title)} helperText={touched.title && errors.title} />
+                                <input id="photo" name="photo" type="file" onChange={(event) => {
+                                    setFieldValue('photo', event.currentTarget.files[0])
+                                    setImage(event)
+                                }
+                                } />
+                            </Grid>
+
+                            <Grid item xs={12}>
+                                <TextField variant="outlined" fullWidth id="name" name="name" label="name" value={values.name} onBlur={handleBlur} onChange={handleChange} error={touched.name && Boolean(errors.name)} helperText={touched.name && errors.name} />
                             </Grid>
 
 
@@ -95,7 +120,7 @@ export default function FAQForm(props) {
 
 
 // Set default props
-FAQForm.defaultProps = {
+CategoryForm.defaultProps = {
     data: null,
     type: "create"
 };

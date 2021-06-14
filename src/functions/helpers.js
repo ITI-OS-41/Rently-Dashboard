@@ -1,3 +1,5 @@
+import { get } from "./request";
+
 function parseJwt(token) {
     var base64Url = token.split('.')[1];
     var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -8,7 +10,7 @@ function parseJwt(token) {
     return JSON.parse(jsonPayload);
 };
 
-const getToken = () =>{
+const getToken = () => {
     return localStorage.getItem('rently-token')
 }
 
@@ -36,5 +38,22 @@ const isAdmin = (token) => {
     return getUserType(token) === 'admin'
 }
 
+const uploadImage = async (image) => {
+    console.log(image);
+    const data = new FormData();
+    data.append("file", image);
+    data.append("upload_preset", "meanblog");
+    data.append("cloud_name", "meanblogger");
 
-export { getUserType, isAdmin, checkTokenValidity ,getToken}
+    console.log(data.image);
+    get('https://api.cloudinary.com/v1_1/meanblogger/image/upload', data)
+        .then(res => {
+            console.log(res);
+        })
+        .catch(err => {
+            // console.log(err);
+        })
+
+}
+
+export { getUserType, isAdmin, checkTokenValidity, getToken, uploadImage }
