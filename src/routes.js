@@ -27,6 +27,10 @@ import SubCategoryList from "views/subcategory/SubCategoryList";
 import SubCategoryCreate from "views/subcategory/SubCategoryCreate";
 import SubCategoryShow from "views/subcategory/SubCategoryShow";
 import SubCategoryEdit from "views/subcategory/SubCategoryEdit";
+import AppRateList from "views/apprate/AppRateList";
+import AppRateCreate from "views/apprate/AppRateCreate";
+import AppRateShow from "views/apprate/AppRateShow";
+import AppRateEdit from "views/apprate/AppRateEdit";
 
 
 var routes = [
@@ -179,7 +183,7 @@ var routes = [
   {
     path: "/subcategory",
     name: "SubCategory",
-    icon: "fas fa-cubes text-orange",
+    icon: "fas fa-cubes text-purple",
     component: SubCategoryList,
     layout: "/admin",
     showInSidebar: true,
@@ -195,7 +199,7 @@ var routes = [
   },
   {
     path: "/subcategory/:id",
-    name: "Category Show",
+    name: "SubCategory Show",
     icon: "far fa-newspaper text-blue",
     component: SubCategoryShow,
     layout: "/admin",
@@ -206,6 +210,43 @@ var routes = [
     name: "SubCategory Blog",
     icon: "ni ni-planet text-blue",
     component: SubCategoryEdit,
+    layout: "/admin",
+    showInSidebar: false
+  },
+
+
+
+  //* apprate
+  {
+    path: "/apprate",
+    name: "App Rate",
+    icon: "far fa-star text-warning",
+    component: AppRateList,
+    layout: "/admin",
+    showInSidebar: true,
+    exact: true
+  },
+  {
+    path: "/apprate/create",
+    name: "AppRate Create",
+    icon: "ni ni-planet text-blue",
+    component: AppRateCreate,
+    layout: "/admin",
+    showInSidebar: false
+  },
+  {
+    path: "/apprate/:id",
+    name: "AppRate Show",
+    icon: "far fa-newspaper text-blue",
+    component: AppRateShow,
+    layout: "/admin",
+    exact: true
+  },
+  {
+    path: "/apprate/:id/edit",
+    name: "AppRate Blog",
+    icon: "ni ni-planet text-blue",
+    component: AppRateEdit,
     layout: "/admin",
     showInSidebar: false
   },

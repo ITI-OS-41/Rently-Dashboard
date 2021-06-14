@@ -64,7 +64,7 @@ export default function SubCategoryForm(props) {
                 .then(res => {
                     values.photo = res.data.url
                 })
-        }
+        } 
 
         post(
             `${modelName}/${data?._id || ''}`,
