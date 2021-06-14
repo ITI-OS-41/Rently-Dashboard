@@ -18,7 +18,7 @@ import Header from "components/Headers/Header.js";
 import { get } from "functions/request";
 import FAQForm from "components/forms/FAQForm";
 
-const modelName = 'faq';
+const modelName = 'category';
 
 
 export default (props) => {

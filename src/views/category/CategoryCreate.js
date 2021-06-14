@@ -17,7 +17,7 @@ import {
 import Header from "components/Headers/Header.js";
 import CategoryForm from '../../components/forms/CategoryForm'
 
-const modelName = 'faq';
+const modelName = 'category';
 
 
 export default () => {

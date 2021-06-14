@@ -44,6 +44,7 @@
     "not op_mini all"
   ],
   "dependencies": {
+    "@cloudinary/base": "^1.0.0-beta.3",
     "@fortawesome/fontawesome-free": "5.15.2",
     "@material-ui/data-grid": "^4.0.0-alpha.31",
     "axios": "^0.21.1",

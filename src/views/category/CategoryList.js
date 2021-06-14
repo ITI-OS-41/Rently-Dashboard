@@ -65,6 +65,9 @@ export default () => {
     {
       field: 'photo', headerName: 'Photo',
       width: `${DATAGRID_WIDTH * 0.2}px`,
+      renderCell: (params) => {
+        return (<img src={params.row.photo} height="50" />)
+      },
     },
     {
       field: 'name', headerName: 'Name',

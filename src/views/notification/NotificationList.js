@@ -135,7 +135,7 @@ export default () => {
                 </Link>
               </CardHeader>
               <div style={{ height: '70vh', width: '100%' }} >
-                <DataGrid columnBuffer={3} loading={isLoading} rows={rows} columns={columns} pageSize={DATAGRID_RESULTS_PER_PAGE} />
+                <DataGrid columnBuffer={5} loading={isLoading} rows={rows} columns={columns} pageSize={DATAGRID_RESULTS_PER_PAGE} />
               </div>
             </Card>
           </div>

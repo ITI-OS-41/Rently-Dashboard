@@ -40,26 +40,26 @@ export default function CategoryForm(props) {
             setImagePreview(URL.createObjectURL(file))
         }
     };
-    const submitForm = (values) => {
+    const submitForm = async (values) => {
+        setIsRequesting(true);
 
 
-        console.log(values);
 
         uploadImage(values.photo)
-
-        // setIsRequesting(true);
-
-        // post(
-        //     `${modelName}/${data?._id || ''}`,
-        //     values, type === 'edit' ? `${modelName} edited successfully!` : `${modelName} added successfully!`
-        // )
-        //     .then(response => {
-        //         history.push(`/admin/${modelName}`);
-        //     })
-        //     .catch(error => { })
-        //     .finally(() => {
-        //         setIsRequesting(false);
-        //     })
+            .then(res => {
+                values.photo = res.data.url
+                post(
+                    `${modelName}/${data?._id || ''}`,
+                    values, type === 'edit' ? `${modelName} edited successfully!` : `${modelName} added successfully!`
+                )
+                    .then(response => {
+                        history.push(`/admin/${modelName}`);
+                    })
+                    .catch(error => { })
+                    .finally(() => {
+                        setIsRequesting(false);
+                    })
+            })
     }
 
 

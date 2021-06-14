@@ -26,6 +26,8 @@ const validationSchema = yup.object().shape({
 
 
 
+
+
 export default function NotificationForm(props) {
     const { data, type } = props;
     const initialValues = {
@@ -45,6 +47,7 @@ export default function NotificationForm(props) {
 
     const submitForm = (values) => {
         setIsRequesting(true);
+
 
         post(
             `${modelName}/${data?._id || ''}`,

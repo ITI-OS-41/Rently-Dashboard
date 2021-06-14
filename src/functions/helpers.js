@@ -1,4 +1,26 @@
-import { get } from "./request";
+import { get, post } from "./request";
+
+import { CLOUDINARY_CLOUD_NAME } from "config";
+
+//Import the Cloudinary class.
+// import { Cloudinary } from "@cloudinary/base";
+// import URLConfig from "@cloudinary/base/config/URLConfig";
+// import CloudConfig from "@cloudinary/base/config/CloudConfig";
+
+// Set the Cloud configuration and URL configuration
+// const cloudConfig = new CloudConfig({
+//     cloudName: 'rently',
+
+// });
+// const urlConfig = new URLConfig({ secure: true });
+
+// Create a Cloudinary instance and set your cloud name.
+// const cld = new Cloudinary(
+//     cloudConfig,
+// );
+
+
+
 
 function parseJwt(token) {
     var base64Url = token.split('.')[1];
@@ -39,20 +61,21 @@ const isAdmin = (token) => {
 }
 
 const uploadImage = async (image) => {
-    console.log(image);
+    console.log({ image });
     const data = new FormData();
     data.append("file", image);
-    data.append("upload_preset", "meanblog");
-    data.append("cloud_name", "meanblogger");
+    data.append("upload_preset", "rently-upload-service-category");
+    data.append("cloud_name", CLOUDINARY_CLOUD_NAME);
 
-    console.log(data.image);
-    get('https://api.cloudinary.com/v1_1/meanblogger/image/upload', data)
-        .then(res => {
-            console.log(res);
-        })
-        .catch(err => {
-            // console.log(err);
-        })
+    return await post(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`, data, 'image uploaded successfully!')
+    // .then(res => {
+    //     console.log({ url: res.data.url });
+    //     return res.data.url;
+    // })
+    // .catch(err => {
+    //     console.log({ err });
+    //     return null;
+    // })
 
 }
 
