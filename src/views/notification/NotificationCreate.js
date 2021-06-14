@@ -15,12 +15,12 @@ import {
 } from "reactstrap";
 // core components
 import Header from "components/Headers/Header.js";
-import BlogForm from '../../components/forms/BlogForm'
+import NotificationForm from '../../components/forms/NotificationForm'
 
+const modelName = 'notification';
 
 
 export default () => {
-  const [copiedText, setCopiedText] = useState();
   return (
     <>
       <Header />
@@ -31,10 +31,10 @@ export default () => {
           <div className="col">
             <Card className="shadow">
               <CardHeader className="bg-transparent">
-                <h3 className="mb-0">Create Blog</h3>
+                <h3 className="mb-0">Create {modelName}</h3>
               </CardHeader>
               <CardBody>
-                <BlogForm />
+                <NotificationForm />
               </CardBody>
             </Card>
           </div>

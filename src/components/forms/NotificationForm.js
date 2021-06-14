@@ -9,31 +9,29 @@ import { get, post } from '../../functions/request';
 import history from '../../functions/history'
 import SubmitButton from '../shared/SubmitButton';
 
-
-const modelName = 'blog';
+const modelName = 'notification';
 
 
 const validationSchema = yup.object().shape({
-    title: yup
-        .string('Enter title')
-        .required('Title is required'),
-    author: yup
-        .string('Enter author')
-        .required('author is required'),
-    description: yup
-        .string('Enter description')
-        .required('Description is required'),
+    sender: yup
+        .string('Enter sender')
+        .required('Sender is required'),
+    receiver: yup
+        .string('Enter receiver')
+        .required('receiver is required'),
+    content: yup
+        .string('Enter content')
+        .required('Content is required'),
 })
 
 
 
-export default function BlogForm(props) {
+export default function NotificationForm(props) {
     const { data, type } = props;
     const initialValues = {
-        author: data?.author?.id || '',
-        title: data?.title || '',
-        description: data?.description || '',
-        tags: data?.tags?.join() || ''
+        sender: data?.sender?.id || '',
+        receiver: data?.receiver?.id || '',
+        content: data?.content || '',
     };
     const [isRequesting, setIsRequesting] = useState(false)
     const [users, setUsers] = React.useState([]);
@@ -48,8 +46,6 @@ export default function BlogForm(props) {
     const submitForm = (values) => {
         setIsRequesting(true);
 
-        //convert tags splitted by comma(,) to array
-        values.tags = values.tags?.split(',') || []
         post(
             `${modelName}/${data?._id || ''}`,
             values, type === 'edit' ? `${modelName} edited successfully!` : `${modelName} added successfully!`
@@ -86,19 +82,18 @@ export default function BlogForm(props) {
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
                                 <FormControl
-                                    error={touched.author && Boolean(errors.author)}
+                                    error={touched.sender && Boolean(errors.sender)}
                                     fullWidth variant="outlined"
                                 >
-                                    <InputLabel>author</InputLabel>
+                                    <InputLabel>sender</InputLabel>
                                     <Select
                                         onBlur={handleBlur}
                                         onChange={handleChange}
-                                        value={values.author}
-                                        label="author"
+                                        value={values.sender}
+                                        label="sender"
                                         inputProps={{
-                                            name: 'author',
+                                            name: 'sender',
                                         }}
-                                        required
                                     >
                                         <option value='' />
 
@@ -106,20 +101,38 @@ export default function BlogForm(props) {
                                             return (<option key={user._id} aria-label={user.username} value={user._id}>{user.username}</option>)
                                         })}
                                     </Select>
-                                    {touched.author && <FormHelperText>{errors.author}</FormHelperText>}
+                                    {touched.sender && <FormHelperText>{errors.sender}</FormHelperText>}
                                 </FormControl>
                             </Grid>
 
                             <Grid item xs={12}>
-                                <TextField variant="outlined" fullWidth id="title" name="title" label="title" value={values.title} onBlur={handleBlur} onChange={handleChange} error={touched.title && Boolean(errors.title)} helperText={touched.title && errors.title} />
+                                <FormControl
+                                    error={touched.receiver && Boolean(errors.receiver)}
+                                    fullWidth variant="outlined"
+                                >
+                                    <InputLabel>receiver</InputLabel>
+                                    <Select
+                                        onBlur={handleBlur}
+                                        onChange={handleChange}
+                                        value={values.receiver}
+                                        label="receiver"
+                                        inputProps={{
+                                            name: 'receiver',
+                                        }}
+                                    >
+                                        <option value='' />
+
+                                        {users.map(user => {
+                                            return (<option key={user._id} aria-label={user.username} value={user._id}>{user.username}</option>)
+                                        })}
+                                    </Select>
+                                    {touched.receiver && <FormHelperText>{errors.receiver}</FormHelperText>}
+                                </FormControl>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField variant="outlined" fullWidth multiline rowsMax={8} id="content" name="content" label="content" value={values.content} onBlur={handleBlur} onChange={handleChange} error={touched.content && Boolean(errors.content)} helperText={touched.content && errors.content} />
                             </Grid>
 
-                            <Grid item xs={12}>
-                                <TextField variant="outlined" fullWidth multiline rowsMax={8} id="description" name="description" label="description" value={values.description} onBlur={handleBlur} onChange={handleChange} error={touched.description && Boolean(errors.description)} helperText={touched.description && errors.description} />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField variant="outlined" fullWidth id="tags" name="tags" label="tags" value={values.tags} onBlur={handleBlur} onChange={handleChange} error={touched.tags && Boolean(errors.tags)} helperText={touched.tags && errors.tags} />
-                            </Grid>
                         </Grid>
 
                         <Grid container justify="flex-end">
@@ -137,7 +150,7 @@ export default function BlogForm(props) {
 
 
 // Set default props
-BlogForm.defaultProps = {
+NotificationForm.defaultProps = {
     data: null,
     type: "create"
 };

@@ -1,4 +1,4 @@
-const SERVER = 'http://localhost:5052/api';
+const SERVER = 'https://rently-service-backend.herokuapp.com/api';
 
 
 const DATAGRID_RESULTS_PER_PAGE = 20;

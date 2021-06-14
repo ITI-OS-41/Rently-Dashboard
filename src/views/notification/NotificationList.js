@@ -25,7 +25,7 @@ import { DATAGRID_RESULTS_PER_PAGE, DATAGRID_WIDTH } from "../../config";
 import { Link } from "react-router-dom";
 import history from "functions/history";
 
-
+const modelName = 'notification';
 
 export default () => {
 
@@ -35,18 +35,18 @@ export default () => {
 
 
   const handleDeleteNotification = (id) => {
-    const conf = window.confirm("are you sure you want to delete?")
+    const conf = window.confirm(`are you sure you want to delete this ${modelName}?`)
     if (!conf) {
       return;
     }
-    del(`notification/${id}`, "Notification deleted successfully!")
+    del(`${modelName}/${id}`, `${modelName} deleted successfully!`)
       .then(() => {
         setDemmy(prevState => (prevState + 1))
       })
   }
 
   useEffect(() => {
-    get('/notification')
+    get(`/${modelName}`)
       .then(response => {
         let res = response.data
 
@@ -86,7 +86,7 @@ export default () => {
       renderCell: (params) => {
         return (
           <>
-            <Link to={'notification/' + params.id}>
+            <Link to={`${modelName}/` + params.id}>
               <Tooltip title="Show" aria-label="show">
                 <IconButton
                   aria-label="show" className="mx-1">
@@ -95,7 +95,7 @@ export default () => {
               </Tooltip>
             </Link>
 
-            <Link to={'notification/' + params.id + '/edit'}>
+            <Link to={`${modelName}/` + params.id + '/edit'}>
               <Tooltip title="Edit" aria-label="edit">
                 <IconButton aria-label="edit" className="mx-1">
                   <CreateOutlinedIcon />
@@ -126,8 +126,8 @@ export default () => {
           <div className="col">
             <Card className="shadow px-3 pb-4">
               <CardHeader className="bg-transparent d-flex justify-content-between">
-                <h3 className="mb-0">List Notification</h3>
-                <Link to="blog/create">
+                <h3 className="mb-0">List {modelName}s</h3>
+                <Link to={`${modelName}/create`}>
                   <Button variant="contained" color="primary" className="bg-primary">
                     <AddCircleOutlineOutlinedIcon className="mr-1" />
                   Create

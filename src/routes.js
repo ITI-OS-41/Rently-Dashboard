@@ -12,6 +12,9 @@ import BlogShow from "views/blog/BlogShow";
 import BlogEdit from "views/blog/BlogEdit";
 
 import NotificationList from "views/notification/NotificationList";
+import NotificationCreate from "views/notification/NotificationCreate";
+import NotificationEdit from "views/notification/NotificationEdit";
+import NotificationShow from "views/notification/NotificationShow";
 
 
 var routes = [
@@ -55,7 +58,32 @@ var routes = [
     icon: "ni ni-planet text-blue",
     component: NotificationList,
     layout: "/admin",
-    showInSidebar: true
+    showInSidebar: true,
+    exact: true
+  },
+  {
+    path: "/notification/create",
+    name: "Blog Create",
+    icon: "ni ni-planet text-blue",
+    component: NotificationCreate,
+    layout: "/admin",
+    showInSidebar: false
+  },
+  {
+    path: "/notification/:id",
+    name: "Notification Show",
+    icon: "far fa-newspaper text-blue",
+    component: NotificationShow,
+    layout: "/admin",
+    exact: true
+  },
+  {
+    path: "/notification/:id/edit",
+    name: "Edit Blog",
+    icon: "ni ni-planet text-blue",
+    component: NotificationEdit,
+    layout: "/admin",
+    showInSidebar: false
   },
   {
     path: "/index",
