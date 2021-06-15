@@ -34,8 +34,8 @@ const validationSchema = yup.object().shape({
 export default function ItemRateForm(props) {
     const { data, type } = props;
     const initialValues = {
-        rater: data?.rater?.id || '',
-        item: data?.item || '',
+        rater: data?.rater?._id || '',
+        item: data?.item?._id || '',
         comment: data?.comment || '',
         rating: data?.rating || 0,
     };
@@ -51,12 +51,12 @@ export default function ItemRateForm(props) {
             })
     }, [])
 
-    useEffect(() => {    
+    useEffect(() => {
         get('/item')
             .then(response => {
                 setItems(response.data)
             })
-    }, []) 
+    }, [])
 
     const submitForm = (values) => {
         setIsRequesting(true);
@@ -122,7 +122,7 @@ export default function ItemRateForm(props) {
                                 </FormControl>
                             </Grid>
                             <Grid item xs={12}>
-                               
+
                                 <FormControl
                                     error={touched.item && Boolean(errors.item)}
                                     fullWidth variant="outlined"
