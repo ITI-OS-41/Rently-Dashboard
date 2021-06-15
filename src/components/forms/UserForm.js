@@ -193,7 +193,7 @@ export default function CategoryForm(props) {
                                         />
                                     }
                                     label="isVerified"
-                                    error={touched.referralCode && Boolean(errors.referralCode)} helperText={touched.referralCode && errors.referralCode}
+                                    error={touched.isVerified && Boolean(errors.isVerified)} helperText={touched.isVerified && errors.isVerified}
                                 />
                             </Grid>
 

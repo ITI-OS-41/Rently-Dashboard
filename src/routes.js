@@ -35,6 +35,10 @@ import UserList from "views/user/UserList";
 import UserCreate from "views/user/UserCreate";
 import UserShow from "views/user/UserShow";
 import UserEdit from "views/user/UserEdit";
+import ItemList from "views/item/ItemList";
+import ItemCreate from "views/item/ItemCreate";
+import ItemShow from "views/item/ItemShow";
+import ItemEdit from "views/item/ItemEdit";
 
 
 var routes = [
@@ -287,6 +291,44 @@ var routes = [
     name: "User edit",
     icon: "ni ni-planet text-blue",
     component: UserEdit,
+    layout: "/admin",
+    showInSidebar: false
+  },
+
+
+
+
+  //* item
+  {
+    path: "/item",
+    name: "Item",
+    icon: "fas fa-bicycle text-green",
+    component: ItemList,
+    layout: "/admin",
+    showInSidebar: true,
+    exact: true
+  },
+  {
+    path: "/item/create",
+    name: "Item Create",
+    icon: "ni ni-planet text-blue",
+    component: ItemCreate,
+    layout: "/admin",
+    showInSidebar: false
+  },
+  {
+    path: "/item/:id",
+    name: "Item Show",
+    icon: "far fa-newspaper text-blue",
+    component: ItemShow,
+    layout: "/admin",
+    exact: true
+  },
+  {
+    path: "/item/:id/edit",
+    name: "Item edit",
+    icon: "ni ni-planet text-blue",
+    component: ItemEdit,
     layout: "/admin",
     showInSidebar: false
   },

@@ -142,7 +142,7 @@ export default function SubCategoryForm(props) {
                                             return (<option key={category._id} aria-label={category.name} value={category._id}>{category.name}</option>)
                                         })}
                                     </Select>
-                                    {touched.sender && <FormHelperText>{errors.sender}</FormHelperText>}
+                                    {touched.category && <FormHelperText>{errors.category}</FormHelperText>}
                                 </FormControl>
                             </Grid>
 
