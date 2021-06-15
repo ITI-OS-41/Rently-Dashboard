@@ -19,8 +19,9 @@ import { del } from "functions/request";
 import { get } from "functions/request";
 import { DATAGRID_RESULTS_PER_PAGE, DATAGRID_WIDTH } from "../../config";
 import { Link } from "react-router-dom";
+import Switch from '@material-ui/core/Switch';
 
-const modelName = 'apprate';
+const modelName = 'user';
 
 export default () => {
 
@@ -59,24 +60,33 @@ export default () => {
   const columns = [
 
     {
-      field: 'rater', headerName: 'Rater',
-      width: `${DATAGRID_WIDTH * 0.2}px`,
+      field: 'photo', headerName: 'Photo',
+      width: `${DATAGRID_WIDTH * 0.1}px`,
+    },
+    {
+      field: 'username', headerName: 'username',
+      width: `${DATAGRID_WIDTH * 0.20}px`,
+    },
+    {
+      field: 'email', headerName: 'email',
+      width: `${DATAGRID_WIDTH * 0.20}px`,
+    },
+    {
+      field: 'role', headerName: 'role',
+      width: `${DATAGRID_WIDTH * 0.15}px`,
+    },
+    {
+      field: 'isVerified', headerName: 'isVerified',
+      width: `${DATAGRID_WIDTH * 0.1}px`,
       renderCell: (params) => {
-        return (params.row.rater.username)
-      },
-    },
-    {
-      field: 'site', headerName: 'Site',
-      width: `${DATAGRID_WIDTH * 0.2}px`,
-    },
-    {
-      field: 'comment', headerName: 'Comment',
-      width: `${DATAGRID_WIDTH * 0.3}px`,
-    },
-    {
-      field: 'rating', headerName: 'Rating',
-      type: 'number',
-      width: `${DATAGRID_WIDTH * 0.2}px`,
+        return (
+          <Switch
+            checked={params.row.isVerified}
+            readOnly
+            color="primary"
+          />
+        )
+      }
     },
     {
       field: "actions",

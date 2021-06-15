@@ -41,7 +41,7 @@ export default function AppRateForm(props) {
     };
     const [isRequesting, setIsRequesting] = useState(false)
     const [users, setUsers] = React.useState([]);
-    const [apps, setApps] = React.useState(["Rently"]);
+    const apps = ["Rently"];
 
     useEffect(() => {
         get('/user')

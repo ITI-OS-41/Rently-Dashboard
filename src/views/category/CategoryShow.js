@@ -24,6 +24,7 @@ export default (props) => {
         let res = response.data
         setItem(res)
       })
+      .catch(err => { })
   }, [])
 
 

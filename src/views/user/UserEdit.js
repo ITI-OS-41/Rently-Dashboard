@@ -10,9 +10,9 @@ import {
 // core components
 import Header from "components/Headers/Header.js";
 import { get } from "functions/request";
-import AppRateForm from "components/forms/AppRateForm";
+import UserForm from "components/forms/UserForm";
 
-const modelName = 'apprate';
+const modelName = 'user';
 
 
 export default (props) => {
@@ -25,6 +25,7 @@ export default (props) => {
         let res = response.data
         setItem(res)
       })
+      .catch(err => { })
   }, [])
 
 
@@ -40,7 +41,7 @@ export default (props) => {
               <h3 className="mb-0">Edit {modelName}</h3>
             </CardHeader>
             <CardBody>
-              <AppRateForm type="edit" data={item} />
+              <UserForm type="edit" data={item} />
             </CardBody>
           </Card>
         </div>

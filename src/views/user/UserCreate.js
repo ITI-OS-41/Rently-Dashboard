@@ -9,9 +9,9 @@ import {
 } from "reactstrap";
 // core components
 import Header from "components/Headers/Header.js";
-import AppRateForm from "components/forms/AppRateForm";
+import UserForm from "components/forms/UserForm";
 
-const modelName = 'apprate';
+const modelName = 'user';
 
 
 export default () => {
@@ -28,7 +28,7 @@ export default () => {
                 <h3 className="mb-0">Create {modelName}</h3>
               </CardHeader>
               <CardBody>
-                <AppRateForm />
+                <UserForm />
               </CardBody>
             </Card>
           </div>
