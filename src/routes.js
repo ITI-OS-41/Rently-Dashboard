@@ -39,6 +39,10 @@ import ItemList from "views/item/ItemList";
 import ItemCreate from "views/item/ItemCreate";
 import ItemShow from "views/item/ItemShow";
 import ItemEdit from "views/item/ItemEdit";
+import ItemRateList from "views/itemrate/ItemRateList";
+import ItemRateCreate from "views/itemrate/ItemRateCreate";
+import ItemRateShow from "views/itemrate/ItemRateShow";
+import ItemRateEdit from "views/itemrate/ItemRateEdit";
 
 
 var routes = [
@@ -223,7 +227,6 @@ var routes = [
   },
 
 
-
   //* apprate
   {
     path: "/apprate",
@@ -295,7 +298,41 @@ var routes = [
     showInSidebar: false
   },
 
-
+    //* ItemRate
+    {
+      path: "/itemrate",
+      name: "Item Rate",
+      icon: "far fa-star text-warning",
+      component: ItemRateList,
+      layout: "/admin",
+      showInSidebar: true,
+      exact: true
+    },
+    {
+      path: "/itemrate/create",
+      name: "Item Rate Create",
+      icon: "ni ni-planet text-blue",
+      component: ItemRateCreate,
+      layout: "/admin",
+      showInSidebar: false
+    },
+    {
+      path: "/itemrate/:id",
+      name: "Item Rate Show",
+      icon: "far fa-newspaper text-blue",
+      component: ItemRateShow,
+      layout: "/admin",
+      exact: true
+    },
+    {
+      path: "/itemrate/:id/edit",
+      name: "Item Rate edit",
+      icon: "ni ni-planet text-blue",
+      component: ItemRateEdit,
+      layout: "/admin",
+      showInSidebar: false
+    },
+// ****  
 
 
   //* item

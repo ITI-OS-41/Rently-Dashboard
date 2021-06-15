@@ -11,7 +11,7 @@ import { TextField, Grid } from '@material-ui/core';
 import Header from "components/Headers/Header.js";
 import { get } from "functions/request";
 
-const modelName = 'notification';
+const modelName = 'item';
 
 
 export default (props) => {
@@ -23,6 +23,7 @@ export default (props) => {
       .then(response => {
         let res = response.data
         setItem(res)
+        console.log(res);
       })
       .catch(err => { })
   }, [])
@@ -38,71 +39,24 @@ export default (props) => {
           <div className="col">
             <Card className="shadow">
               <CardHeader className="bg-transparent">
-                <h3 className="mb-0">Content</h3>
+                <h3 className="mb-0">{item.name}</h3>
               </CardHeader>
               <CardBody>
-                {item.content}
-              </CardBody>
-            </Card>
+                <img src={item.photo} width="200" className="img-fluid mb-4 mx-auto" />
 
-            <Card className="shadow mt-4">
-              <CardHeader className="bg-transparent">
-                <h3 className="mb-0">Sender</h3>
-              </CardHeader>
-              <CardBody>
-                <Grid container spacing={2}>
-                  <Grid item xs={12}>
-                    <TextField variant="outlined" fullWidth label="id" value={item.sender.id} />
-                  </Grid>
-                </Grid>
-                <Grid container spacing={2}>
-                  <Grid item xs={12}>
-                    <TextField variant="outlined" fullWidth label="name" value={item.sender.name} />
-                  </Grid>
-                </Grid>
-                <Grid container spacing={2}>
-                  <Grid item xs={12}>
-                    <TextField variant="outlined" fullWidth label="username" value={item.sender.username} />
-                  </Grid>
-                </Grid>
-                <Grid container spacing={2}>
-                  <Grid item sm={6}>
-                    <TextField variant="outlined" fullWidth label="firstname" value={item.sender.firstname} />
-                  </Grid>
-                  <Grid item sm={6}>
-                    <TextField variant="outlined" fullWidth label="lastname" value={item.sender.lastname} />
-                  </Grid>
-                </Grid>
-              </CardBody>
-            </Card>
-            <Card className="shadow mt-4">
-              <CardHeader className="bg-transparent">
-                <h3 className="mb-0">Receiver</h3>
-              </CardHeader>
-              <CardBody>
-                <Grid container spacing={2}>
-                  <Grid item xs={12}>
-                    <TextField variant="outlined" fullWidth label="id" value={item.receiver.id} />
-                  </Grid>
-                </Grid>
-                <Grid container spacing={2}>
-                  <Grid item xs={12}>
-                    <TextField variant="outlined" fullWidth label="name" value={item.receiver.name} />
-                  </Grid>
-                </Grid>
-                <Grid container spacing={2}>
-                  <Grid item xs={12}>
-                    <TextField variant="outlined" fullWidth label="username" value={item.receiver.username} />
-                  </Grid>
-                </Grid>
-                <Grid container spacing={2}>
-                  <Grid item sm={6}>
-                    <TextField variant="outlined" fullWidth label="firstname" value={item.receiver.firstname} />
-                  </Grid>
-                  <Grid item sm={6}>
-                    <TextField variant="outlined" fullWidth label="lastname" value={item.receiver.lastname} />
-                  </Grid>
-                </Grid>
+                <h3 className="mb-0">owner: {item.description}</h3>
+                <h3 className="mb-0">owner: {item.owner.name}</h3>
+                <h3 className="mb-0">category: {item.category.name} ({item.subcategory.name})</h3>
+                <h3 className="mb-0">condition: {item.condition}</h3>
+                <h3 className="mb-0">status: {item.stock} </h3>
+                <h3 className="mb-0">category: {item.cancellation} </h3>
+                <h3 className="mb-0">category: {item.deliverable} </h3>
+                <h3 className="mb-0">category: {item.deposit} </h3>
+                <h3 className="mb-0">price: </h3>
+                <h3 className="mb-0">hour: {item.price.hour}</h3>
+                <h3 className="mb-0">day: {item.price.day}</h3>
+                <h3 className="mb-0">week: {item.price.week}</h3>
+                <h3 className="mb-0">month: {item.price.month}</h3>
               </CardBody>
             </Card>
           </div>

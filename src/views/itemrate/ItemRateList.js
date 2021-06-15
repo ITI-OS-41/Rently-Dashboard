@@ -25,17 +25,16 @@ import { DATAGRID_RESULTS_PER_PAGE, DATAGRID_WIDTH } from "../../config";
 import { Link } from "react-router-dom";
 import history from "functions/history";
 
-const modelName = 'blog';
-
+const modelName = 'itemrate';
 
 export default () => {
 
   const [dummy, setDemmy] = useState(0)
-  const [rows, setRows] = useState([])
+  const [rows, setRows] = useState([])    
   const [isLoading, setIsLoading] = useState(true)
 
 
-  const handleDeleteBlog = (id) => {
+  const handleDeleteNotification = (id) => {
     const conf = window.confirm(`are you sure you want to delete this ${modelName}?`)
     if (!conf) {
       return;
@@ -63,21 +62,43 @@ export default () => {
 
 
   const columns = [
-
     {
-      field: 'photo', headerName: 'Photo',
+      field: 'item', headerName: 'Item',
       width: `${DATAGRID_WIDTH * 0.2}px`,
       renderCell: (params) => {
-        return (<img src={params.row.photo} height="50" />)
+        return (params.row.item.name)
+        // console.log("owner -> : ",params.row)
       },
     },
-    { field: 'title', headerName: 'Title', width: `${DATAGRID_WIDTH * 0.3}px` },
-    { field: 'description', headerName: 'Description', width: `${DATAGRID_WIDTH * 0.55}px` },
+   
+    {
+      field: 'rater', headerName: 'Rater',
+      width: `${DATAGRID_WIDTH * 0.2}px`,
+      renderCell: (params) => {
+        return (params.row.rater.username)
+      },
+    },
+    {
+      field: 'comment', headerName: 'Comment',
+      width: `${DATAGRID_WIDTH * 0.2}px`,
+      renderCell: (params) => {
+        return (params.row.rater.comment)
+      },
+    },
+    {
+      field: 'rating', headerName: 'Rating',
+      width: `${DATAGRID_WIDTH * 0.2}px`,
+      renderCell: (params) => {
+        return (params.row.rater.rating)
+      },
+    },
+   
+   
     {
       field: "actions",
       headerName: "Actions",
       sortable: false,
-      width: `${DATAGRID_WIDTH * 0.20}px`,
+      width: `${DATAGRID_WIDTH * 0.2}px`,
       disableClickEventBubbling: true,
       renderCell: (params) => {
         return (
@@ -101,7 +122,7 @@ export default () => {
 
             <Tooltip title="Edit" aria-label="edit">
               <IconButton
-                onClick={() => { handleDeleteBlog(params.id) }}
+                onClick={() => { handleDeleteNotification(params.id) }}
                 aria-label="delete" className="mx-1">
                 <DeleteOutlinedIcon />
               </IconButton>
@@ -130,8 +151,8 @@ export default () => {
                 </Button>
                 </Link>
               </CardHeader>
-              <div style={{ height: '70vh', width: '100%' }}>
-                <DataGrid loading={isLoading} columnBuffer={10} rows={rows} columns={columns} pageSize={DATAGRID_RESULTS_PER_PAGE} />
+              <div style={{ height: '70vh', width: '100%' }} >
+                <DataGrid columnBuffer={6} loading={isLoading} rows={rows} columns={columns} pageSize={DATAGRID_RESULTS_PER_PAGE} />
               </div>
             </Card>
           </div>

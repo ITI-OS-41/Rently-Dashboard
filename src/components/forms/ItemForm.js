@@ -65,7 +65,7 @@ export default function NotificationForm(props) {
         subcategory: data?.subcategory?.id || '60c7dac16900f400157cf460',
         condition: data?.condition || 'perfect',
         status: data?.status || true,
-        name: data?.name || 'asdasd asd asd ',
+        name: data?.name || 'ىثص ',
         stock: data?.stock || 9,
         description: data?.description || 'asdasd',
         // location: data?.location || {},

@@ -8,6 +8,7 @@ import * as yup from 'yup';
 import { get, post } from '../../functions/request';
 import history from '../../functions/history'
 import SubmitButton from '../shared/SubmitButton';
+import { uploadImage } from 'functions/helpers';
 
 
 const modelName = 'blog';
@@ -30,12 +31,14 @@ const validationSchema = yup.object().shape({
 export default function BlogForm(props) {
     const { data, type } = props;
     const initialValues = {
+        photo: data?.photo || '',
         author: data?.author?.id || '',
         title: data?.title || '',
         description: data?.description || '',
         tags: data?.tags?.join() || ''
     };
     const [isRequesting, setIsRequesting] = useState(false)
+    const [imagePreview, setImagePreview] = useState(null)
     const [users, setUsers] = React.useState([]);
 
     useEffect(() => {
@@ -45,9 +48,22 @@ export default function BlogForm(props) {
             })
     }, [])
 
-    const submitForm = (values) => {
+    const setImage = (event) => {
+        const file = event.currentTarget.files[0]
+        if (file) {
+            setImagePreview(URL.createObjectURL(file))
+        }
+    };
+    const submitForm = async (values) => {
         setIsRequesting(true);
 
+
+        if (values.photo) {
+            await uploadImage(values.photo, modelName)
+                .then(res => {
+                    values.photo = res.data.url
+                })
+        }
         //convert tags splitted by comma(,) to array
         values.tags = values.tags?.split(',') || []
         post(
@@ -79,11 +95,23 @@ export default function BlogForm(props) {
                     isSubmitting,
                     handleChange,
                     handleBlur,
-                    handleSubmit
+                    handleSubmit,
+                    setFieldValue
                 } = props;
                 return (
                     <form onSubmit={handleSubmit}>
                         <Grid container spacing={2}>
+                            {(imagePreview || values.photo) && (<img src={imagePreview || values.photo || ''} height="250" />)}
+
+                            <Grid item xs={12}>
+                                <input id="photo" name="photo" type="file" onChange={(event) => {
+                                    setFieldValue('photo', event.currentTarget.files[0])
+                                    setImage(event)
+                                }
+                                } />
+                            </Grid>
+
+
                             <Grid item xs={12}>
                                 <FormControl
                                     error={touched.author && Boolean(errors.author)}

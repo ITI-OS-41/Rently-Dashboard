@@ -18,6 +18,7 @@ import { get } from "functions/request";
 import { DATAGRID_RESULTS_PER_PAGE, DATAGRID_WIDTH } from "../../config";
 import { Link } from "react-router-dom";
 import UncontrolableSwitch from "components/shared/UncontrolableSwitch";
+import ListTableActions from "components/shared/ListTableActions";
 
 const modelName = 'item';
 
@@ -27,8 +28,7 @@ export default () => {
   const [rows, setRows] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
-
-  const handleDeleteNotification = (id) => {
+  const handleDelete = (id) => {
     const conf = window.confirm(`are you sure you want to delete this ${modelName}?`)
     if (!conf) {
       return;
@@ -119,30 +119,7 @@ export default () => {
       renderCell: (params) => {
         return (
           <>
-            <Link to={`${modelName}/` + params.id}>
-              <Tooltip title="Show" aria-label="show">
-                <IconButton
-                  aria-label="show" className="mx-1">
-                  <VisibilityOutlinedIcon />
-                </IconButton>
-              </Tooltip>
-            </Link>
-
-            <Link to={`${modelName}/` + params.id + '/edit'}>
-              <Tooltip title="Edit" aria-label="edit">
-                <IconButton aria-label="edit" className="mx-1">
-                  <CreateOutlinedIcon />
-                </IconButton>
-              </Tooltip>
-            </Link>
-
-            <Tooltip title="Edit" aria-label="edit">
-              <IconButton
-                onClick={() => { handleDeleteNotification(params.id) }}
-                aria-label="delete" className="mx-1">
-                <DeleteOutlinedIcon />
-              </IconButton>
-            </Tooltip>
+            <ListTableActions modelName={modelName} id={params.id} handleDelete={handleDelete} />
           </>
         );
       }
