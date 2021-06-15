@@ -19,7 +19,6 @@ import { del } from "functions/request";
 import { get } from "functions/request";
 import { DATAGRID_RESULTS_PER_PAGE, DATAGRID_WIDTH } from "../../config";
 import { Link } from "react-router-dom";
-import Rating from "@material-ui/lab/Rating";
 
 const modelName = 'apprate';
 
@@ -78,15 +77,6 @@ export default () => {
       field: 'rating', headerName: 'Rating',
       type: 'number',
       width: `${DATAGRID_WIDTH * 0.2}px`,
-      renderCell: (params) => {
-        return (
-          <Rating
-            name="rating"
-            readOnly
-            value={params.row.rating}
-          />
-        )
-      },
     },
     {
       field: "actions",

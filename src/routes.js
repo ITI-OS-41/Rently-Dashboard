@@ -31,6 +31,10 @@ import AppRateList from "views/apprate/AppRateList";
 import AppRateCreate from "views/apprate/AppRateCreate";
 import AppRateShow from "views/apprate/AppRateShow";
 import AppRateEdit from "views/apprate/AppRateEdit";
+import UserList from "views/user/UserList";
+import UserCreate from "views/user/UserCreate";
+import UserShow from "views/user/UserShow";
+import UserEdit from "views/user/UserEdit";
 
 
 var routes = [
@@ -244,9 +248,45 @@ var routes = [
   },
   {
     path: "/apprate/:id/edit",
-    name: "AppRate Blog",
+    name: "AppRate edit",
     icon: "ni ni-planet text-blue",
     component: AppRateEdit,
+    layout: "/admin",
+    showInSidebar: false
+  },
+
+
+  //* user
+  {
+    path: "/user",
+    name: "User",
+    icon: "far fa-user text-dark",
+    component: UserList,
+    layout: "/admin",
+    showInSidebar: true,
+    exact: true
+  },
+  {
+    path: "/user/create",
+    name: "User Create",
+    icon: "ni ni-planet text-blue",
+    component: UserCreate,
+    layout: "/admin",
+    showInSidebar: false
+  },
+  {
+    path: "/user/:id",
+    name: "User Show",
+    icon: "far fa-newspaper text-blue",
+    component: UserShow,
+    layout: "/admin",
+    exact: true
+  },
+  {
+    path: "/user/:id/edit",
+    name: "User edit",
+    icon: "ni ni-planet text-blue",
+    component: UserEdit,
     layout: "/admin",
     showInSidebar: false
   },

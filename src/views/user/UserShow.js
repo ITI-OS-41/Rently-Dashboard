@@ -7,11 +7,11 @@ import {
   Container,
   Row
 } from "reactstrap";
+import { TextField, Grid } from '@material-ui/core';
 import Header from "components/Headers/Header.js";
 import { get } from "functions/request";
-import Rating from "@material-ui/lab/Rating";
 
-const modelName = 'apprate';
+const modelName = 'subcategory';
 
 
 export default (props) => {
@@ -35,18 +35,11 @@ export default (props) => {
           <div className="col">
             <Card className="shadow">
               <CardHeader className="bg-transparent">
-
-
-
-                <h3 className="mb-0">{item.rater.username} @ {item.site}</h3>
+                <h3 className="mb-0">{item.name} ({item.category.name})</h3>
               </CardHeader>
               <CardBody>
-                <h3 className="mb-0">{item.comment}</h3>
-                <Rating
-                  name="rating"
-                  readOnly
-                  value={item.rating}
-                />
+                <img src={item.photo} className="img-fluid mb-4 mx-auto" />
+                <h3 className="mb-0">{item.description}</h3>
               </CardBody>
             </Card>
           </div>
