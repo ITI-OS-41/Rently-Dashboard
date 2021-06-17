@@ -34,7 +34,7 @@ const validationSchema = yup.object().shape({
 export default function AppRateForm(props) {
     const { data, type } = props;
     const initialValues = {
-        rater: data?.rater?.id || '',
+        rater: data?.rater?._id || '',
         site: data?.site || '',
         comment: data?.comment || '',
         rating: data?.rating || 0,

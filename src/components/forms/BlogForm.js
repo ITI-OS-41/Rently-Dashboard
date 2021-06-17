@@ -32,7 +32,7 @@ export default function BlogForm(props) {
     const { data, type } = props;
     const initialValues = {
         photo: data?.photo || '',
-        author: data?.author?.id || '',
+        author: data?.author?._id || '',
         title: data?.title || '',
         description: data?.description || '',
         tags: data?.tags?.join() || ''

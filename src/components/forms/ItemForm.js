@@ -60,9 +60,9 @@ export default function NotificationForm(props) {
     const { data, type } = props;
     const initialValues = {
         photo: data?.photo || '',
-        owner: data?.owner?.id || '60c77b82af8cc2f12a031a4e',
-        category: data?.category?.id || '60c7b0ae4530040015709bc3',
-        subcategory: data?.subcategory?.id || '60c7dac16900f400157cf460',
+        owner: data?.owner?._id || '60c77b82af8cc2f12a031a4e',
+        category: data?.category?._id || '60c7b0ae4530040015709bc3',
+        subcategory: data?.subcategory?._id || '60c7dac16900f400157cf460',
         condition: data?.condition || 'perfect',
         status: data?.status || true,
         name: data?.name || 'ىثص ',

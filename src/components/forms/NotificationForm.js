@@ -31,8 +31,8 @@ const validationSchema = yup.object().shape({
 export default function NotificationForm(props) {
     const { data, type } = props;
     const initialValues = {
-        sender: data?.sender?.id || '',
-        receiver: data?.receiver?.id || '',
+        sender: data?.sender?._id || '',
+        receiver: data?.receiver?._id || '',
         content: data?.content || '',
     };
     const [isRequesting, setIsRequesting] = useState(false)

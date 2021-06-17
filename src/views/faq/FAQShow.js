@@ -18,7 +18,7 @@ import Header from "components/Headers/Header.js";
 import BlogForm from '../../components/forms/BlogForm'
 import { get } from "functions/request";
 
-const modelName = 'notification';
+const modelName = 'faq';
 
 
 export default (props) => {
@@ -59,7 +59,7 @@ export default (props) => {
               <CardBody>
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
-                    <TextField variant="outlined" fullWidth label="id" value={item.sender.id} />
+                    <TextField variant="outlined" fullWidth label="id" value={item.sender_id} />
                   </Grid>
                 </Grid>
                 <Grid container spacing={2}>
@@ -89,7 +89,7 @@ export default (props) => {
               <CardBody>
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
-                    <TextField variant="outlined" fullWidth label="id" value={item.receiver.id} />
+                    <TextField variant="outlined" fullWidth label="id" value={item.receiver_id} />
                   </Grid>
                 </Grid>
                 <Grid container spacing={2}>

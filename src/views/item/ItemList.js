@@ -47,6 +47,8 @@ export default () => {
         res.map((res) => {
           res['id'] = res['_id']
         })
+
+
         setRows(res)
       })
       .finally(() => {
@@ -75,7 +77,7 @@ export default () => {
     {
       field: 'photo', headerName: 'photo', width: `${DATAGRID_WIDTH * 0.1}px`,
       renderCell: (params) => {
-        return (<img src={params.row.photo} height="50" />)
+        return (params.row.photo ? <img src={params.row.photo} height="50" /> : '')
       },
     },
     { field: 'name', headerName: 'name', width: `${DATAGRID_WIDTH * 0.1}px` },
@@ -119,7 +121,7 @@ export default () => {
       renderCell: (params) => {
         return (
           <>
-            <ListTableActions modelName={modelName} id={params.id} handleDelete={handleDelete} />
+            <ListTableActions modelName={modelName} id={params._id} handleDelete={handleDelete} />
           </>
         );
       }
@@ -140,8 +142,8 @@ export default () => {
                 <Link to={`${modelName}/create`}>
                   <Button variant="contained" color="primary" className="bg-primary">
                     <AddCircleOutlineOutlinedIcon className="mr-1" />
-                  Create
-                </Button>
+                    Create
+                  </Button>
                 </Link>
               </CardHeader>
               <div style={{ height: '70vh', width: '100%' }} >

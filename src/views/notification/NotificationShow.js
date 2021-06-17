@@ -52,7 +52,7 @@ export default (props) => {
               <CardBody>
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
-                    <TextField variant="outlined" fullWidth label="id" value={item.sender.id} />
+                    <TextField variant="outlined" fullWidth label="id" value={item.sender_id} />
                   </Grid>
                 </Grid>
                 <Grid container spacing={2}>
@@ -82,7 +82,7 @@ export default (props) => {
               <CardBody>
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
-                    <TextField variant="outlined" fullWidth label="id" value={item.receiver.id} />
+                    <TextField variant="outlined" fullWidth label="id" value={item.receiver_id} />
                   </Grid>
                 </Grid>
                 <Grid container spacing={2}>

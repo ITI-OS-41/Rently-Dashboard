@@ -36,7 +36,7 @@ export default (props) => {
           <div className="col">
             <Card className="shadow">
               <CardHeader className="bg-transparent">
-                <h3 className="mb-0">{item.username} ({item.id})</h3>
+                <h3 className="mb-0">{item.username} ({item._id})</h3>
               </CardHeader>
               <CardBody>
                 <img src={item.photo} width="200" className="img-fluid mb-4 mx-auto" />
@@ -44,7 +44,7 @@ export default (props) => {
                 <h3 className="mb-0">{item.email}</h3>
                 <h3 className="mb-0">{item.role}</h3>
                 <h3 className="mb-0">isVerified
-                {
+                  {
                     <Switch
                       checked={item.isVerified}
                       readOnly

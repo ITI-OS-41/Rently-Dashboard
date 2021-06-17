@@ -24,6 +24,8 @@ import { get } from "functions/request";
 import { DATAGRID_RESULTS_PER_PAGE, DATAGRID_WIDTH } from "../../config";
 import { Link } from "react-router-dom";
 import history from "functions/history";
+import ListTableActions from "components/shared/ListTableActions";
+
 
 const modelName = 'faq';
 
@@ -34,7 +36,8 @@ export default () => {
   const [isLoading, setIsLoading] = useState(true)
 
 
-  const handleDeleteNotification = (id) => {
+
+  const handleDelete = (id) => {
     const conf = window.confirm(`are you sure you want to delete this ${modelName}?`)
     if (!conf) {
       return;
@@ -44,7 +47,6 @@ export default () => {
         setDemmy(prevState => (prevState + 1))
       })
   }
-
   useEffect(() => {
     get(`/${modelName}`)
       .then(response => {
@@ -53,6 +55,8 @@ export default () => {
         res.map((res) => {
           res['id'] = res['_id']
         })
+
+
         setRows(res)
       })
       .finally(() => {
@@ -79,30 +83,7 @@ export default () => {
       renderCell: (params) => {
         return (
           <>
-            <Link to={`${modelName}/` + params.id}>
-              <Tooltip title="Show" aria-label="show">
-                <IconButton
-                  aria-label="show" className="mx-1">
-                  <VisibilityOutlinedIcon />
-                </IconButton>
-              </Tooltip>
-            </Link>
-
-            <Link to={`${modelName}/` + params.id + '/edit'}>
-              <Tooltip title="Edit" aria-label="edit">
-                <IconButton aria-label="edit" className="mx-1">
-                  <CreateOutlinedIcon />
-                </IconButton>
-              </Tooltip>
-            </Link>
-
-            <Tooltip title="Edit" aria-label="edit">
-              <IconButton
-                onClick={() => { handleDeleteNotification(params.id) }}
-                aria-label="delete" className="mx-1">
-                <DeleteOutlinedIcon />
-              </IconButton>
-            </Tooltip>
+            <ListTableActions modelName={modelName} id={params.row._id} handleDelete={handleDelete} />
           </>
         );
       }
@@ -123,8 +104,8 @@ export default () => {
                 <Link to={`${modelName}/create`}>
                   <Button variant="contained" color="primary" className="bg-primary">
                     <AddCircleOutlineOutlinedIcon className="mr-1" />
-                  Create
-                </Button>
+                    Create
+                  </Button>
                 </Link>
               </CardHeader>
               <div style={{ height: '70vh', width: '100%' }} >

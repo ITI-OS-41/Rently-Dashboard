@@ -59,7 +59,7 @@ export default (props) => {
               <CardBody>
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
-                    <TextField variant="outlined" fullWidth label="id" value={item.author.id} />
+                    <TextField variant="outlined" fullWidth label="id" value={item.author_id} />
                   </Grid>
                 </Grid>
                 <Grid container spacing={2}>

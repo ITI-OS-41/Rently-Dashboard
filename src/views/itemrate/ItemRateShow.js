@@ -23,7 +23,7 @@ export default (props) => {
       .then(response => {
         let res = response.data
         setItem(res)
-        console.log("item backend: ",res);
+        console.log("item backend: ", res);
       })
       .catch(err => { })
   }, [])
@@ -42,22 +42,22 @@ export default (props) => {
                 <h3 className="mb-0">Rate Info</h3>
               </CardHeader>
               <CardBody>
-              <span><b>Rated Item: </b>{item.item.name} </span>  < br />
-              <span><b>Rater name: </b> {item.rater.name} </span>  <br/>
-              <span><b>Rating number: </b> {item.rating} </span>  <br/>
-              <span><b>Rater Comment: </b> {item.comment} </span>  <br/>
-               
+                <span><b>Rated Item: </b>{item.item.name} </span>  < br />
+                <span><b>Rater name: </b> {item.rater.name} </span>  <br />
+                <span><b>Rating number: </b> {item.rating} </span>  <br />
+                <span><b>Rater Comment: </b> {item.comment} </span>  <br />
+
               </CardBody>
             </Card>
 
-            <Card className="shadow mt-4">  
+            <Card className="shadow mt-4">
               <CardHeader className="bg-transparent">
                 <h3 className="mb-0">Rater Info</h3>
               </CardHeader>
               <CardBody>
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
-                    <TextField variant="outlined" fullWidth label="id" value={item.rater.id} />
+                    <TextField variant="outlined" fullWidth label="id" value={item.rater_id} />
                   </Grid>
                 </Grid>
                 <Grid container spacing={2}>
@@ -80,9 +80,9 @@ export default (props) => {
                 </Grid>
               </CardBody>
             </Card>
-           
-            
-           
+
+
+
           </div>
         </Row>
       </Container>

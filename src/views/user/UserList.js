@@ -16,10 +16,6 @@ import { del } from "functions/request";
 import { get } from "functions/request";
 import { DATAGRID_RESULTS_PER_PAGE, DATAGRID_WIDTH } from "../../config";
 import { Link } from "react-router-dom";
-
-import {
-  Input,
-} from "reactstrap";
 import UncontrolableSwitch from "components/shared/UncontrolableSwitch";
 import ListTableActions from "components/shared/ListTableActions";
 
@@ -51,6 +47,7 @@ export default () => {
         res.map((res) => {
           res['id'] = res['_id']
         })
+
         setRows(res)
       })
       .finally(() => {
@@ -64,6 +61,9 @@ export default () => {
     {
       field: 'photo', headerName: 'Photo',
       width: `${DATAGRID_WIDTH * 0.1}px`,
+      renderCell: (params) => {
+        return (params.row.photo && <img src={params.row.photo} height="50" />)
+      },
     },
     {
       field: 'username', headerName: 'username',
@@ -93,7 +93,7 @@ export default () => {
       renderCell: (params) => {
         return (
           <>
-            <ListTableActions modelName={modelName} id={params.id} handleDelete={handleDelete}/>
+            <ListTableActions modelName={modelName} id={params.row._id} handleDelete={handleDelete} />
           </>
         );
       }
@@ -114,8 +114,8 @@ export default () => {
                 <Link to={`${modelName}/create`}>
                   <Button variant="contained" color="primary" className="bg-primary">
                     <AddCircleOutlineOutlinedIcon className="mr-1" />
-                  Create
-                </Button>
+                    Create
+                  </Button>
                 </Link>
               </CardHeader>
               <div style={{ height: '70vh', width: '100%' }} >

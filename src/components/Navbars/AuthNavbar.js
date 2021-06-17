@@ -23,7 +23,7 @@ const AdminNavbar = () => {
             <img
               alt="..."
               src={
-                require("../../assets/img/brand/argon-react-white.png").default
+                require("../../assets/img/brand/logo.png").default
               }
             />
           </NavbarBrand>
@@ -38,7 +38,7 @@ const AdminNavbar = () => {
                     <img
                       alt="..."
                       src={
-                        require("../../assets/img/brand/argon-react.png")
+                        require("../../assets/img/brand/logo.png")
                           .default
                       }
                     />

@@ -1,11 +1,10 @@
 import Index from "views/Index.js";
 import Profile from "views/examples/Profile.js";
-import Maps from "views/examples/Maps.js";
 import Register from "views/examples/Register.js";
 import Login from "views/examples/Login.js";
-import Tables from "views/examples/Tables.js";
-import Icons from "views/examples/Icons.js";
-import Empty from "views/examples/Empty";
+
+
+// * BLOG
 import BlogCreate from "views/blog/BlogCreate";
 import BlogList from "views/blog/BlogList";
 import BlogShow from "views/blog/BlogShow";
@@ -298,41 +297,41 @@ var routes = [
     showInSidebar: false
   },
 
-    //* ItemRate
-    {
-      path: "/itemrate",
-      name: "Item Rate",
-      icon: "far fa-star text-warning",
-      component: ItemRateList,
-      layout: "/admin",
-      showInSidebar: true,
-      exact: true
-    },
-    {
-      path: "/itemrate/create",
-      name: "Item Rate Create",
-      icon: "ni ni-planet text-blue",
-      component: ItemRateCreate,
-      layout: "/admin",
-      showInSidebar: false
-    },
-    {
-      path: "/itemrate/:id",
-      name: "Item Rate Show",
-      icon: "far fa-newspaper text-blue",
-      component: ItemRateShow,
-      layout: "/admin",
-      exact: true
-    },
-    {
-      path: "/itemrate/:id/edit",
-      name: "Item Rate edit",
-      icon: "ni ni-planet text-blue",
-      component: ItemRateEdit,
-      layout: "/admin",
-      showInSidebar: false
-    },
-// ****  
+  //* ItemRate
+  {
+    path: "/itemrate",
+    name: "Item Rate",
+    icon: "far fa-star text-warning",
+    component: ItemRateList,
+    layout: "/admin",
+    showInSidebar: true,
+    exact: true
+  },
+  {
+    path: "/itemrate/create",
+    name: "Item Rate Create",
+    icon: "ni ni-planet text-blue",
+    component: ItemRateCreate,
+    layout: "/admin",
+    showInSidebar: false
+  },
+  {
+    path: "/itemrate/:id",
+    name: "Item Rate Show",
+    icon: "far fa-newspaper text-blue",
+    component: ItemRateShow,
+    layout: "/admin",
+    exact: true
+  },
+  {
+    path: "/itemrate/:id/edit",
+    name: "Item Rate edit",
+    icon: "ni ni-planet text-blue",
+    component: ItemRateEdit,
+    layout: "/admin",
+    showInSidebar: false
+  },
+  // ****  
 
 
   //* item
@@ -380,38 +379,10 @@ var routes = [
     layout: "/admin",
   },
   {
-    path: "/empty",
-    name: "Empty",
-    icon: "ni ni-planet text-blue",
-    component: Empty,
-    layout: "/admin",
-  },
-  {
-    path: "/icons",
-    name: "Icons",
-    icon: "ni ni-planet text-blue",
-    component: Icons,
-    layout: "/admin",
-  },
-  {
-    path: "/maps",
-    name: "Maps",
-    icon: "ni ni-pin-3 text-orange",
-    component: Maps,
-    layout: "/admin",
-  },
-  {
     path: "/user-profile",
     name: "User Profile",
     icon: "ni ni-single-02 text-yellow",
     component: Profile,
-    layout: "/admin",
-  },
-  {
-    path: "/tables",
-    name: "Tables",
-    icon: "ni ni-bullet-list-67 text-red",
-    component: Tables,
     layout: "/admin",
   },
   {
