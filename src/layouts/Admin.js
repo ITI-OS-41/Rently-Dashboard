@@ -9,6 +9,7 @@ import AdminFooter from "components/Footers/AdminFooter.js";
 import Sidebar from "components/Sidebar/Sidebar.js";
 
 import routes from "routes.js";
+import AdminRoute from "../functions/route-guards/AdminRoute";
 
 const Admin = (props) => {
   const mainContent = React.useRef(null);
@@ -24,7 +25,7 @@ const Admin = (props) => {
     return routes.map((prop, key) => {
       if (prop.layout === "/admin") {
         return (
-          <Route
+          <AdminRoute
             exact={prop.exact}
             path={prop.layout + prop.path}
             component={prop.component}

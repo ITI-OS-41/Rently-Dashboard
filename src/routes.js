@@ -1,7 +1,7 @@
 import Index from "views/Index.js";
 import Profile from "views/examples/Profile.js";
-import Register from "views/examples/Register.js";
-import Login from "views/examples/Login.js";
+import Register from "views/auth/Register.js";
+import Login from "views/auth/Login.js";
 
 
 // * BLOG
@@ -331,7 +331,7 @@ var routes = [
     layout: "/admin",
     showInSidebar: false
   },
-  // ****  
+  // ****
 
 
   //* item

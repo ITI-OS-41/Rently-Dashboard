@@ -57,6 +57,7 @@ const getUserType = (token) => {
 }
 
 const isAdmin = (token) => {
+    console.log(getUserType(token))
     return getUserType(token) === 'admin'
 }
 
