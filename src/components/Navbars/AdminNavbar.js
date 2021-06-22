@@ -34,7 +34,7 @@ const AdminNavbar = (props) => {
       .then(res=>{
         setUser(res.data)
       })
-  })
+  }, [])
 
   const handleLogout = () =>{
     axios.defaults.headers.common['Authorization'] = null

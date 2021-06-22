@@ -3,13 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e73bf5bc-9065-43f8-9413-c55f2caa9e21" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Headers/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Headers/Header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Headers/UserHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Headers/UserHeader.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Navbars/AdminNavbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbars/AdminNavbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/functions/axios.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/functions/axios.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/functions/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/functions/helpers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/functions/route-guards/AdminRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/functions/route-guards/AdminRoute.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/functions/route-guards/VisitorRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/functions/route-guards/VisitorRoute.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +51,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1624317457160</updated>
-      <workItem from="1624317458525" duration="3991000" />
+      <workItem from="1624317458525" duration="4296000" />
     </task>
     <servers />
   </component>
