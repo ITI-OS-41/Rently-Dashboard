@@ -1,6 +1,7 @@
 import { get, post } from "./request";
 
 import { CLOUDINARY_CLOUD_NAME } from "config";
+import axios from "axios";
 
 //Import the Cloudinary class.
 // import { Cloudinary } from "@cloudinary/base";
@@ -65,14 +66,12 @@ const isAdmin = (token) => {
 }
 
 const uploadImage = async (image, folder) => {
-    console.log({ image });
     const data = new FormData();
     data.append("file", image);
     data.append("upload_preset", `rently-upload-service-${folder}`);
     data.append("cloud_name", CLOUDINARY_CLOUD_NAME);
 
-    return await post(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`, data, 'image uploaded successfully!')
-
+    return await axios.post(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`, data)
 }
 
-export { getUserType, isAdmin, checkTokenValidity, getToken, uploadImage ,parseJwt}
+export { getUserType, isAdmin, checkTokenValidity, getToken, uploadImage, parseJwt }
