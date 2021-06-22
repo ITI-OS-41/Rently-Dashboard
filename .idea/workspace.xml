@@ -2,20 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e73bf5bc-9065-43f8-9413-c55f2caa9e21" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/Graduation project - dashboard.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/functions/route-guards/AdminRoute.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/functions/route-guards/UserRoute.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/functions/route-guards/VisitorRoute.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Headers/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Headers/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Headers/UserHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Headers/UserHeader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Navbars/AdminNavbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbars/AdminNavbar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/functions/axios.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/functions/axios.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/functions/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/functions/helpers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/Admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/Admin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/Auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/Auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/examples/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/auth/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/examples/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/auth/Register.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/functions/route-guards/AdminRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/functions/route-guards/AdminRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/functions/route-guards/VisitorRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/functions/route-guards/VisitorRoute.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +57,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1624317457160</updated>
-      <workItem from="1624317458525" duration="1417000" />
+      <workItem from="1624317458525" duration="3991000" />
     </task>
     <servers />
   </component>

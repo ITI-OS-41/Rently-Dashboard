@@ -11,13 +11,12 @@ const AdminRoute = ({ component: Component, ...rest }) => {
 
     // Add your own authentication on the below line.
     const token = localStorage.getItem('rently-token')
-    console.log("isAdmin", token);
 
     return (
         <Route
             {...rest}
             render={props =>
-                isAdmin(token) ? (
+              (token && isAdmin(token)) ? (
                     <Component {...props} />
                 ) : (
                     <Redirect to={{ pathname: '/auth/login', state: { from: props.location } }} />

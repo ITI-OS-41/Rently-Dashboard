@@ -45,6 +45,7 @@ const checkTokenValidity = () => {
 
         if (expiration - now < 0) {
             localStorage.removeItem('rently-token')
+
         }
     }
 }
@@ -53,6 +54,8 @@ const getUserType = (token) => {
     if (token) {
         const info = parseJwt(token)
         return info.role
+    } else {
+        return null
     }
 }
 
@@ -72,4 +75,4 @@ const uploadImage = async (image, folder) => {
 
 }
 
-export { getUserType, isAdmin, checkTokenValidity, getToken, uploadImage }
+export { getUserType, isAdmin, checkTokenValidity, getToken, uploadImage ,parseJwt}

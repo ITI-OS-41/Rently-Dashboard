@@ -4,7 +4,7 @@ import { checkTokenValidity } from './helpers';
 
 
 // check if token if expired or not, and delete it if expired
-checkTokenValidity()
+// checkTokenValidity()
 
 
 const instance = axios.create({

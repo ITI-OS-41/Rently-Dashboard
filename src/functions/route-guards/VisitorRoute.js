@@ -11,7 +11,6 @@ const VisitorRoute = ({ component: Component, ...rest }) => {
 
     // Add your own authentication on the below line.
     const token = getToken()
-    console.log({ token });
 
     return (
         <Route
@@ -20,7 +19,7 @@ const VisitorRoute = ({ component: Component, ...rest }) => {
                 !token ? (
                     <Component {...props} />
                 ) : (
-                    <Redirect to={{ pathname: '/admin', state: { from: props.location } }} />
+                    <Redirect to={{ pathname: '/admin/index', state: { from: props.location } }} />
                 )
             }
         />
