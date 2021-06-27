@@ -72,7 +72,7 @@ export default function RegisterForm({ props }) {
     const submitForm = (values) => {
         setIsRequesting(true);
 
-        post('auth/register', values, "Registered successfully!")
+        post('user/register', values, "Registered successfully!")
             .then(response => {
                 history.push("/auth/login");
             })

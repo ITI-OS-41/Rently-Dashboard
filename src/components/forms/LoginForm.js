@@ -1,17 +1,18 @@
-import React, {useState} from 'react';
-import {Link} from 'react-router-dom'
-import {Button, FormControlLabel, TextField, Typography} from '@material-ui/core';
+import React, {useContext, useState} from 'react';
+import { Link } from 'react-router-dom'
+import { Button, FormControlLabel, TextField, Typography } from '@material-ui/core';
 import Checkbox from '@material-ui/core/Checkbox';
 import Grid from '@material-ui/core/Grid';
-import {makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
-import {Formik} from 'formik';
+import { Formik } from 'formik';
 import * as yup from 'yup';
-import {post} from '../../functions/request';
+import { post } from '../../functions/request';
 import history from '../../functions/history'
 import LoadingCircle from '../shared/LoadingCircle';
 import axios from '../../functions/axios'
 import toast from "../../functions/toast";
+import {UserContext} from "../../Context";
 
 const validationSchema = yup.object().shape({
   email: yup
@@ -41,24 +42,33 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function LoginForm({props}) {
+export default function LoginForm({ props }) {
   const classes = useStyles();
   const [isRequesting, setIsRequesting] = useState(false)
-
+  const {user,setUser} = useContext(UserContext);
 
   const submitForm = (values) => {
     setIsRequesting(true);
 
-    post('auth/login', values)
+    post('user/login', values)
       .then(response => {
-        const role = response.data.user.role
+
+        const token = response.data.token;
+        const userid = response.data._id;
+        const allData = response.data;
+        const role = response.data.role
+
         if (role === 'admin') {
-          const token = response.data.token
+
+          localStorage.setItem('rently-user', JSON.stringify(allData));
           localStorage.setItem('rently-token', token);
           axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+
+          setUser(allData);
+
           history.push("/admin/dashboard");
         } else {
-            toast.error("You are not an admin to login!")
+          toast.error("You are not an admin to login!")
         }
 
       })
@@ -151,7 +161,7 @@ export default function LoginForm({props}) {
               className={classes.submit}
               id="submit"
               size="large"
-              startIcon={isRequesting && <LoadingCircle/>}
+              startIcon={isRequesting && <LoadingCircle />}
             >
               Login
             </Button>

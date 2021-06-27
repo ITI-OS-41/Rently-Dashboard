@@ -3,20 +3,23 @@
 
 // If they are: they proceed to the page
 // If not: they are redirected to the login page.
-import React from 'react'
+import React, {useContext} from 'react'
 import { Redirect, Route } from 'react-router-dom'
 import { isAdmin } from '../helpers'
+import {UserContext} from "../../Context";
 
 const AdminRoute = ({ component: Component, ...rest }) => {
 
-    // Add your own authentication on the below line.
-    const token = localStorage.getItem('rently-token')
+    const {user,setUser} = useContext(UserContext);
+
+    const token = user.token
+    console.log({token})
 
     return (
         <Route
             {...rest}
             render={props =>
-              (token && isAdmin(token)) ? (
+              (token && user.role === 'admin') ? (
                     <Component {...props} />
                 ) : (
                     <Redirect to={{ pathname: '/auth/login', state: { from: props.location } }} />

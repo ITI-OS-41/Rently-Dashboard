@@ -45,7 +45,7 @@ export default () => {
   useEffect(() => {
     get(`/${modelName}`)
       .then(response => {
-        let res = response.data
+        let res = response.data.res
 
         res.map((res) => {
           res['id'] = res['_id']

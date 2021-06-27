@@ -50,7 +50,7 @@ export default () => {
   useEffect(() => {
     get(`/${modelName}`)
       .then(response => {
-        let res = response.data
+        let res = response.data.res
 
         res.map((res) => {
           res['id'] = res['_id']
@@ -70,7 +70,7 @@ export default () => {
       field: 'item', headerName: 'Item',
       width: `${DATAGRID_WIDTH * 0.2}px`,
       renderCell: (params) => {
-        return (params.row.item.name)
+        return (params.row.item.username)
         // console.log("owner -> : ",params.row)
       },
     },

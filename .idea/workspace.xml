@@ -3,7 +3,22 @@
   <component name="ChangeListManager">
     <list default="true" id="e73bf5bc-9065-43f8-9413-c55f2caa9e21" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/forms/LoginForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/LoginForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/forms/RegisterForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/RegisterForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/functions/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/functions/helpers.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/functions/request.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/functions/request.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/functions/route-guards/AdminRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/functions/route-guards/AdminRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/functions/route-guards/VisitorRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/functions/route-guards/VisitorRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/apprate/AppRateList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/apprate/AppRateList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/blog/BlogList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/blog/BlogList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/category/CategoryList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/category/CategoryList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/faq/FAQList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/faq/FAQList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/item/ItemList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/item/ItemList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/itemrate/ItemRateList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/itemrate/ItemRateList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/notification/NotificationList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/notification/NotificationList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/subcategory/SubCategoryList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/subcategory/SubCategoryList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/user/UserList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/user/UserList.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,7 +40,9 @@
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/functions" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -43,7 +60,22 @@
       <recent name="D:\ITI\graduation project\Graduation project - dashboard\src\views\auth" />
     </key>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="e73bf5bc-9065-43f8-9413-c55f2caa9e21" name="Default Changelist" comment="" />
@@ -53,10 +85,17 @@
       <updated>1624317457160</updated>
       <workItem from="1624317458525" duration="4446000" />
       <workItem from="1624367229398" duration="1809000" />
+      <workItem from="1624827285179" duration="3066000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="379" y="101" width="607" height="536" key="find.popup" timestamp="1624828560374">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="379" y="101" width="607" height="536" key="find.popup/0.0.1366.738@0.0.1366.738" timestamp="1624828560374" />
   </component>
 </project>
