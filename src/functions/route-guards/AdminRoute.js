@@ -10,10 +10,9 @@ import {UserContext} from "../../Context";
 
 const AdminRoute = ({ component: Component, ...rest }) => {
 
-    const {user,setUser} = useContext(UserContext);
+    const user = JSON.parse(localStorage.getItem('rently-user'));
 
-    const token = user.token
-    console.log({token})
+    const token = user?.token || null
 
     return (
         <Route

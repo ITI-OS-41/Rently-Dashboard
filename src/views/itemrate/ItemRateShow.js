@@ -10,6 +10,7 @@ import {
 import { TextField, Grid } from '@material-ui/core';
 import Header from "components/Headers/Header.js";
 import { get } from "functions/request";
+import Rating from "@material-ui/lab/Rating";
 
 const modelName = 'itemrate';
 
@@ -44,7 +45,15 @@ export default (props) => {
               <CardBody>
                 <span><b>Rated Item: </b>{item.item.name} </span>  < br />
                 <span><b>Rater name: </b> {item.rater.name} </span>  <br />
-                <span><b>Rating number: </b> {item.rating} </span>  <br />
+                <span><b>Rating number:
+                </b>
+                  <Rating
+                    name="rating"
+                    readOnly
+                    value={item.rating}
+                />
+                </span>
+                <br />
                 <span><b>Rater Comment: </b> {item.comment} </span>  <br />
 
               </CardBody>

@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { Link, Redirect } from 'react-router-dom'
-import { FormHelperText, FormControl, InputLabel, Select, Typography, Button, TextField, FormControlLabel } from '@material-ui/core';
+import React, {useState} from 'react';
+import {TextField} from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
-import Chip from '@material-ui/core/Chip';
-import { Formik } from 'formik';
+import {Formik} from 'formik';
 import * as yup from 'yup';
-import { get, post } from '../../functions/request';
-import { uploadImage } from '../../functions/helpers';
+import {post} from '../../functions/request';
+import {uploadImage} from '../../functions/helpers';
 import history from '../../functions/history'
 import SubmitButton from '../shared/SubmitButton';
 
@@ -20,6 +18,9 @@ const validationSchema = yup.object().shape({
     description: yup
         .string('Enter description')
         .required('description is required'),
+    model: yup
+        .string('Enter description')
+        .required('description is required'),
 })
 
 
@@ -30,6 +31,7 @@ export default function CategoryForm(props) {
         name: data?.name || '',
         description: data?.description || '',
         photo: data?.photo || '',
+        model: data?.model || '',
     };
     const [isRequesting, setIsRequesting] = useState(false)
     const [imagePreview, setImagePreview] = useState(null)
@@ -105,6 +107,10 @@ export default function CategoryForm(props) {
                                 <TextField variant="outlined" fullWidth multiline rowsMax={8} id="description" name="description" label="description" value={values.description} onBlur={handleBlur} onChange={handleChange} error={touched.description && Boolean(errors.description)} helperText={touched.description && errors.description} />
                             </Grid>
 
+
+                            <Grid item xs={12}>
+                                <TextField variant="outlined" fullWidth id="model" name="model" label="model" value={values.model} onBlur={handleBlur} onChange={handleChange} error={touched.model && Boolean(errors.model)} helperText={touched.model && errors.model} />
+                            </Grid>
                         </Grid>
 
                         <Grid container justify="flex-end">

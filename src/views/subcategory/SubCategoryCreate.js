@@ -8,8 +8,8 @@ import {
   Row,
 } from "reactstrap";
 // core components
-import Header from "components/Headers/Header.js";
-import SubCategoryForm from "components/forms/SubCategoryForm";
+import Header from "../../components/Headers/Header.js";
+import SubCategoryForm from "../../components/forms/SubCategoryForm";
 
 const modelName = 'subcategory';
 

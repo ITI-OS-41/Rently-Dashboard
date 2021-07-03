@@ -10,6 +10,7 @@ import {
 import { TextField, Grid } from '@material-ui/core';
 import Header from "components/Headers/Header.js";
 import { get } from "functions/request";
+import DoneAllIcon from '@material-ui/icons/DoneAll';
 
 const modelName = 'notification';
 
@@ -38,7 +39,10 @@ export default (props) => {
           <div className="col">
             <Card className="shadow">
               <CardHeader className="bg-transparent">
-                <h3 className="mb-0">Content</h3>
+                <h3 className="mb-0">Content
+
+                  {item.isRead && <DoneAllIcon color="primary" style={{marginLeft: '0.5rem'}}/>}
+                </h3>
               </CardHeader>
               <CardBody>
                 {item.content}
@@ -47,42 +51,12 @@ export default (props) => {
 
             <Card className="shadow mt-4">
               <CardHeader className="bg-transparent">
-                <h3 className="mb-0">Sender</h3>
-              </CardHeader>
-              <CardBody>
-                <Grid container spacing={2}>
-                  <Grid item xs={12}>
-                    <TextField variant="outlined" fullWidth label="id" value={item.sender_id} />
-                  </Grid>
-                </Grid>
-                <Grid container spacing={2}>
-                  <Grid item xs={12}>
-                    <TextField variant="outlined" fullWidth label="name" value={item.sender.name} />
-                  </Grid>
-                </Grid>
-                <Grid container spacing={2}>
-                  <Grid item xs={12}>
-                    <TextField variant="outlined" fullWidth label="username" value={item.sender.username} />
-                  </Grid>
-                </Grid>
-                <Grid container spacing={2}>
-                  <Grid item sm={6}>
-                    <TextField variant="outlined" fullWidth label="firstname" value={item.sender.firstname} />
-                  </Grid>
-                  <Grid item sm={6}>
-                    <TextField variant="outlined" fullWidth label="lastname" value={item.sender.lastname} />
-                  </Grid>
-                </Grid>
-              </CardBody>
-            </Card>
-            <Card className="shadow mt-4">
-              <CardHeader className="bg-transparent">
                 <h3 className="mb-0">Receiver</h3>
               </CardHeader>
               <CardBody>
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
-                    <TextField variant="outlined" fullWidth label="id" value={item.receiver_id} />
+                    <TextField variant="outlined" fullWidth label="id" value={item.receiver._id} />
                   </Grid>
                 </Grid>
                 <Grid container spacing={2}>

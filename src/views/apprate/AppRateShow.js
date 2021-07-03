@@ -48,6 +48,7 @@ export default (props) => {
                   readOnly
                   value={item.rating}
                 />
+                <p>{new Date(item.createdAt).toLocaleDateString()}</p>
               </CardBody>
             </Card>
           </div>

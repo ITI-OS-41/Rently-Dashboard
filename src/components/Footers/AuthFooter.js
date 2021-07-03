@@ -51,7 +51,7 @@ const Login = () => {
                 </NavItem>
                 <NavItem>
                   <NavLink
-                    href="https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md?ref=adr-auth-footer"
+                    href="#"
                     target="_blank"
                   >
                     MIT License

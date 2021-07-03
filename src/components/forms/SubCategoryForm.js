@@ -43,8 +43,9 @@ export default function SubCategoryForm(props) {
     useEffect(() => {
         get('/category')
             .then(response => {
-                setCategories(response.data)
+                setCategories(response.data.res)
             })
+            .catch(e=>console.log(e))
     }, [])
 
 

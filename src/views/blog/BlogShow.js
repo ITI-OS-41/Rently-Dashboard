@@ -47,6 +47,8 @@ export default (props) => {
                 <h3 className="mb-0">{item.title}</h3>
               </CardHeader>
               <CardBody>
+                <img src={item.headerPhoto} style={{width: '100%',marginBottom: '2rem'}} alt=""/>
+
                 {item.description}
               </CardBody>
 

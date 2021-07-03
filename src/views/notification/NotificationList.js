@@ -47,7 +47,7 @@ export default () => {
   }
 
   useEffect(() => {
-    get(`/${modelName}`)
+    get(`/${modelName}?limit=9999`)
       .then(response => {
         let res = response.data.res
 
@@ -65,13 +65,6 @@ export default () => {
 
 
   const columns = [
-    {
-      field: 'sender', headerName: 'Sender',
-      width: `${DATAGRID_WIDTH * 0.2}px`,
-      renderCell: (params) => {
-        return (params.row.sender.username)
-      },
-    },
     {
       field: 'receiver', headerName: 'Receiver',
       width: `${DATAGRID_WIDTH * 0.2}px`,

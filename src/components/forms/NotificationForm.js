@@ -13,9 +13,6 @@ const modelName = 'notification';
 
 
 const validationSchema = yup.object().shape({
-    sender: yup
-        .string('Enter sender')
-        .required('Sender is required'),
     receiver: yup
         .string('Enter receiver')
         .required('receiver is required'),
@@ -30,8 +27,9 @@ const validationSchema = yup.object().shape({
 
 export default function NotificationForm(props) {
     const { data, type } = props;
+    console.log({data})
+    console.log({type})
     const initialValues = {
-        sender: data?.sender?._id || '',
         receiver: data?.receiver?._id || '',
         content: data?.content || '',
     };
@@ -39,7 +37,7 @@ export default function NotificationForm(props) {
     const [users, setUsers] = React.useState([]);
 
     useEffect(() => {
-        get('/user')
+        get('/user/top')
             .then(response => {
                 setUsers(response.data)
             })
@@ -51,7 +49,11 @@ export default function NotificationForm(props) {
 
         post(
             `${modelName}/${data?._id || ''}`,
-            values, type === 'edit' ? `${modelName} edited successfully!` : `${modelName} added successfully!`
+            {
+                ...values,
+                isRead: false,
+                type: 'rent'
+            }, type === 'edit' ? `${modelName} edited successfully!` : `${modelName} added successfully!`
         )
             .then(response => {
                 history.push(`/admin/${modelName}`);
@@ -83,33 +85,9 @@ export default function NotificationForm(props) {
                 return (
                     <form onSubmit={handleSubmit}>
                         <Grid container spacing={2}>
-                            <Grid item xs={12}>
-                                <FormControl
-                                    error={touched.sender && Boolean(errors.sender)}
-                                    fullWidth variant="outlined"
-                                >
-                                    <InputLabel>sender</InputLabel>
-                                    <Select
-                                        onBlur={handleBlur}
-                                        onChange={handleChange}
-                                        value={values.sender}
-                                        label="sender"
-                                        inputProps={{
-                                            name: 'sender',
-                                        }}
-                                    >
-                                        <option value='' />
-
-                                        {users.map(user => {
-                                            return (<option key={user._id} aria-label={user.username} value={user._id}>{user.username}</option>)
-                                        })}
-                                    </Select>
-                                    {touched.sender && <FormHelperText>{errors.sender}</FormHelperText>}
-                                </FormControl>
-                            </Grid>
 
                             <Grid item xs={12}>
-                                <FormControl
+                                {users.length && <FormControl
                                     error={touched.receiver && Boolean(errors.receiver)}
                                     fullWidth variant="outlined"
                                 >
@@ -125,12 +103,12 @@ export default function NotificationForm(props) {
                                     >
                                         <option value='' />
 
-                                        {users.map(user => {
+                                        {users.length && users.map(user => {
                                             return (<option key={user._id} aria-label={user.username} value={user._id}>{user.username}</option>)
                                         })}
                                     </Select>
                                     {touched.receiver && <FormHelperText>{errors.receiver}</FormHelperText>}
-                                </FormControl>
+                                </FormControl>}
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField variant="outlined" fullWidth multiline rowsMax={8} id="content" name="content" label="content" value={values.content} onBlur={handleBlur} onChange={handleChange} error={touched.content && Boolean(errors.content)} helperText={touched.content && errors.content} />

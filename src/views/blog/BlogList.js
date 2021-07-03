@@ -25,6 +25,7 @@ import { DATAGRID_RESULTS_PER_PAGE, DATAGRID_WIDTH } from "../../config";
 import { Link } from "react-router-dom";
 import history from "functions/history";
 import ListTableActions from "components/shared/ListTableActions";
+import ListTableThumbnail from "../../components/shared/ListTableThumbnail";
 
 
 const modelName = 'blog';
@@ -69,10 +70,10 @@ export default () => {
   const columns = [
 
     {
-      field: 'photo', headerName: 'Photo',
-      width: `${DATAGRID_WIDTH * 0.2}px`,
+      field: 'headerPhoto', headerName: 'Photo',
+      width: `${DATAGRID_WIDTH * 0.07}px`,
       renderCell: (params) => {
-        return (<img src={params.row.photo} height="50" />)
+        return (<ListTableThumbnail image={params.row.headerPhoto}/>)
       },
     },
     { field: 'title', headerName: 'Title', width: `${DATAGRID_WIDTH * 0.3}px` },

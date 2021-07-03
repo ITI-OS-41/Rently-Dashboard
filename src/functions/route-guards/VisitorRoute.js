@@ -4,10 +4,10 @@ import { getToken } from '../helpers'
 import {UserContext} from "../../Context";
 
 const VisitorRoute = ({ component: Component, ...rest }) => {
-    const {user,setUser} = useContext(UserContext);
+    const user = JSON.parse(localStorage.getItem('rently-user'));
 
     // Add your own authentication on the below line.
-    const token = user.token
+    const token = user?.token || null
 
 
     return (

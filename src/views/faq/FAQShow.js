@@ -45,69 +45,39 @@ export default (props) => {
           <div className="col">
             <Card className="shadow">
               <CardHeader className="bg-transparent">
-                <h3 className="mb-0">Content</h3>
+                <h3 className="mb-0">{item.question}</h3>
               </CardHeader>
               <CardBody>
-                {item.content}
+                {item.answer}
+
+                <h2>{item.category.name}</h2>
+                <hr/>
+                Section:
+                <h2>{item.section}</h2>
               </CardBody>
             </Card>
 
             <Card className="shadow mt-4">
               <CardHeader className="bg-transparent">
-                <h3 className="mb-0">Sender</h3>
+                <h3 className="mb-0">Created by</h3>
               </CardHeader>
               <CardBody>
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
-                    <TextField variant="outlined" fullWidth label="id" value={item.sender_id} />
+                    <TextField variant="outlined" fullWidth label="id" value={item.createdBy._id} />
                   </Grid>
                 </Grid>
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
-                    <TextField variant="outlined" fullWidth label="name" value={item.sender.name} />
-                  </Grid>
-                </Grid>
-                <Grid container spacing={2}>
-                  <Grid item xs={12}>
-                    <TextField variant="outlined" fullWidth label="username" value={item.sender.username} />
+                    <TextField variant="outlined" fullWidth label="username" value={item.createdBy.username} />
                   </Grid>
                 </Grid>
                 <Grid container spacing={2}>
                   <Grid item sm={6}>
-                    <TextField variant="outlined" fullWidth label="firstname" value={item.sender.firstname} />
+                    <TextField variant="outlined" fullWidth label="firstname" value={item.createdBy.firstname} />
                   </Grid>
                   <Grid item sm={6}>
-                    <TextField variant="outlined" fullWidth label="lastname" value={item.sender.lastname} />
-                  </Grid>
-                </Grid>
-              </CardBody>
-            </Card>
-            <Card className="shadow mt-4">
-              <CardHeader className="bg-transparent">
-                <h3 className="mb-0">Receiver</h3>
-              </CardHeader>
-              <CardBody>
-                <Grid container spacing={2}>
-                  <Grid item xs={12}>
-                    <TextField variant="outlined" fullWidth label="id" value={item.receiver_id} />
-                  </Grid>
-                </Grid>
-                <Grid container spacing={2}>
-                  <Grid item xs={12}>
-                    <TextField variant="outlined" fullWidth label="name" value={item.receiver.name} />
-                  </Grid>
-                </Grid>
-                <Grid container spacing={2}>
-                  <Grid item xs={12}>
-                    <TextField variant="outlined" fullWidth label="username" value={item.receiver.username} />
-                  </Grid>
-                </Grid>
-                <Grid container spacing={2}>
-                  <Grid item sm={6}>
-                    <TextField variant="outlined" fullWidth label="firstname" value={item.receiver.firstname} />
-                  </Grid>
-                  <Grid item sm={6}>
-                    <TextField variant="outlined" fullWidth label="lastname" value={item.receiver.lastname} />
+                    <TextField variant="outlined" fullWidth label="lastname" value={item.createdBy.lastname} />
                   </Grid>
                 </Grid>
               </CardBody>

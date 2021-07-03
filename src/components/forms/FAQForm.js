@@ -13,23 +13,43 @@ const modelName = 'faq';
 
 
 const validationSchema = yup.object().shape({
-    title: yup
-        .string('Enter title')
-        .required('title is required'),
-    description: yup
-        .string('Enter description')
-        .required('description is required'),
+    question: yup
+        .string('Enter question')
+        .required('question is required'),
+    answer: yup
+        .string('Enter answer')
+        .required('answer is required'),
+    category: yup
+        .string('Enter category')
+        .required('category is required'),
 })
 
 
 
 export default function FAQForm(props) {
     const { data, type } = props;
-    const initialValues = {
-        title: data?.title || '',
-        description: data?.description || '',
-    };
+
     const [isRequesting, setIsRequesting] = useState(false)
+    const [categories, setCategories] = React.useState([]);
+
+    const initialValues = {
+        question: data?.question || '',
+        answer: data?.answer || '',
+        category: data?.category?._id || '',
+        section: data?.section || '',
+    };
+
+
+    useEffect(() => {
+        get('/category?model=faq')
+            .then(response => {
+                setCategories(response.data.res);
+            })
+    }, []);
+
+
+
+
 
     const submitForm = (values) => {
         setIsRequesting(true);
@@ -41,7 +61,8 @@ export default function FAQForm(props) {
             .then(response => {
                 history.push(`/admin/${modelName}`);
             })
-            .catch(error => { })
+            .catch(error => {
+                console.log(error)})
             .finally(() => {
                 setIsRequesting(false);
             })
@@ -70,12 +91,42 @@ export default function FAQForm(props) {
                         <Grid container spacing={2}>
 
                             <Grid item xs={12}>
-                                <TextField variant="outlined" fullWidth id="title" name="title" label="title" value={values.title} onBlur={handleBlur} onChange={handleChange} error={touched.title && Boolean(errors.title)} helperText={touched.title && errors.title} />
+                                <TextField variant="outlined" fullWidth id="question" name="question" label="question" value={values.question} onBlur={handleBlur} onChange={handleChange} error={touched.question && Boolean(errors.question)} helperText={touched.question && errors.question} />
                             </Grid>
 
 
                             <Grid item xs={12}>
-                                <TextField variant="outlined" fullWidth multiline rowsMax={8} id="description" name="description" label="description" value={values.description} onBlur={handleBlur} onChange={handleChange} error={touched.description && Boolean(errors.description)} helperText={touched.description && errors.description} />
+                                <TextField variant="outlined" fullWidth multiline rowsMax={8} id="answer" name="answer" label="answer" value={values.answer} onBlur={handleBlur} onChange={handleChange} error={touched.answer && Boolean(errors.answer)} helperText={touched.answer && errors.answer} />
+                            </Grid>
+
+
+                            <Grid item xs={12}>
+                                <FormControl
+                                    error={touched.category && Boolean(errors.category)}
+                                    fullWidth variant="outlined"
+                                >
+                                    <InputLabel>category</InputLabel>
+                                    <Select
+                                        onBlur={handleBlur}
+                                        onChange={handleChange}
+                                        value={values.category}
+                                        label="category"
+                                        inputProps={{
+                                            name: 'category',
+                                        }}
+                                    >
+                                        <option value='' />
+
+                                        {categories.map(category => {
+                                            return (<option key={category._id} aria-label={category.name} value={category._id}>{category.name}</option>)
+                                        })}
+                                    </Select>
+                                    {touched.category && <FormHelperText>{errors.category}</FormHelperText>}
+                                </FormControl>
+                            </Grid>
+
+                            <Grid item xs={12}>
+                                <TextField variant="outlined" fullWidth id="section" name="section" label="section" value={values.section} onBlur={handleBlur} onChange={handleChange} error={touched.section && Boolean(errors.section)} helperText={touched.section && errors.section} />
                             </Grid>
 
                         </Grid>

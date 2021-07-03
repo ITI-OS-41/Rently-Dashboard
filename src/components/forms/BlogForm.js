@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { Link, Redirect } from 'react-router-dom'
-import { FormHelperText, FormControl, InputLabel, Select, Typography, Button, TextField, FormControlLabel } from '@material-ui/core';
+import React, {useEffect, useState} from 'react';
+import {FormControl, FormHelperText, InputLabel, Select, TextField} from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
-import Chip from '@material-ui/core/Chip';
-import { Formik } from 'formik';
+import {Formik} from 'formik';
 import * as yup from 'yup';
-import { get, post } from '../../functions/request';
+import {get, post} from '../../functions/request';
 import history from '../../functions/history'
 import SubmitButton from '../shared/SubmitButton';
-import { uploadImage } from 'functions/helpers';
+import {uploadImage} from '../../functions/helpers';
 
 
 const modelName = 'blog';
@@ -21,6 +19,9 @@ const validationSchema = yup.object().shape({
     author: yup
         .string('Enter author')
         .required('author is required'),
+    category: yup
+        .string('Enter category')
+        .required('category is required'),
     description: yup
         .string('Enter description')
         .required('Description is required'),
@@ -31,8 +32,9 @@ const validationSchema = yup.object().shape({
 export default function BlogForm(props) {
     const { data, type } = props;
     const initialValues = {
-        photo: data?.photo || '',
+        headerPhoto: data?.headerPhoto || '',
         author: data?.author?._id || '',
+        category: data?.category?._id || '',
         title: data?.title || '',
         description: data?.description || '',
         tags: data?.tags?.join() || ''
@@ -40,13 +42,25 @@ export default function BlogForm(props) {
     const [isRequesting, setIsRequesting] = useState(false)
     const [imagePreview, setImagePreview] = useState(null)
     const [users, setUsers] = React.useState([]);
+    const [categories, setCategories] = React.useState([]);
 
     useEffect(() => {
-        get('/user')
+        get('/category?model=blog')
+            .then(response => {
+                setCategories(response.data.res)
+            })
+            .catch(e=>{
+                console.log(e)})
+
+        get('/user/top')
             .then(response => {
                 setUsers(response.data)
             })
+            .catch(e=>{
+                console.log(e)})
+
     }, [])
+
 
     const setImage = (event) => {
         const file = event.currentTarget.files[0]
@@ -58,14 +72,15 @@ export default function BlogForm(props) {
         setIsRequesting(true);
 
 
-        if (values.photo) {
-            await uploadImage(values.photo, modelName)
+        if (values.headerPhoto) {
+            await uploadImage(values.headerPhoto, modelName)
                 .then(res => {
-                    values.photo = res.data.url
+                    values.headerPhoto = res.data.url
                 })
         }
         //convert tags splitted by comma(,) to array
         values.tags = values.tags?.split(',') || []
+        console.log({values})
         post(
             `${modelName}/${data?._id || ''}`,
             values, type === 'edit' ? `${modelName} edited successfully!` : `${modelName} added successfully!`
@@ -101,11 +116,11 @@ export default function BlogForm(props) {
                 return (
                     <form onSubmit={handleSubmit}>
                         <Grid container spacing={2}>
-                            {(imagePreview || values.photo) && (<img src={imagePreview || values.photo || ''} height="250" />)}
+                            {(imagePreview || values.headerPhoto) && (<img src={imagePreview || values.headerPhoto || ''} height="250" />)}
 
                             <Grid item xs={12}>
-                                <input id="photo" name="photo" type="file" onChange={(event) => {
-                                    setFieldValue('photo', event.currentTarget.files[0])
+                                <input id="headerPhoto" name="headerPhoto" type="file" onChange={(event) => {
+                                    setFieldValue('headerPhoto', event.currentTarget.files[0])
                                     setImage(event)
                                 }
                                 } />
@@ -135,6 +150,32 @@ export default function BlogForm(props) {
                                         })}
                                     </Select>
                                     {touched.author && <FormHelperText>{errors.author}</FormHelperText>}
+                                </FormControl>
+                            </Grid>
+
+                            <Grid item xs={12}>
+                                <FormControl
+                                    error={touched.category && Boolean(errors.category)}
+                                    fullWidth variant="outlined"
+                                >
+                                    <InputLabel>category</InputLabel>
+                                    <Select
+                                        onBlur={handleBlur}
+                                        onChange={handleChange}
+                                        value={values.category}
+                                        label="category"
+                                        inputProps={{
+                                            name: 'category',
+                                        }}
+                                        required
+                                    >
+                                        <option value='' />
+
+                                        {categories.map(category => {
+                                            return (<option key={category._id} aria-label={category.name} value={category._id}>{category.name}</option>)
+                                        })}
+                                    </Select>
+                                    {touched.category && <FormHelperText>{errors.category}</FormHelperText>}
                                 </FormControl>
                             </Grid>
 

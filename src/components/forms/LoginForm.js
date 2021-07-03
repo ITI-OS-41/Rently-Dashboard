@@ -21,14 +21,12 @@ const validationSchema = yup.object().shape({
     .required('Email is required'),
   password: yup
     .string('Enter your password')
-    .min(6, 'Password should be of minimum 6 characters length')
     .required('Password is required'),
 })
 
 const initialValues = {
-  email: 'admin@gmail.com',
-  password: 'adminadmin',
-  rememberMe: true
+  email: '',
+  password: '',
 };
 
 const useStyles = makeStyles((theme) => ({
@@ -131,24 +129,6 @@ export default function LoginForm({ props }) {
                   helperText={touched.password && errors.password}
                 />
               </Grid>
-              <Grid item xs={12}>
-
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      id="rememberMe"
-                      name="rememberMe"
-                      color="primary"
-                      checked={values.rememberMe}
-                      onBlur={handleBlur}
-                      onChange={handleChange}
-                    />
-                  }
-                  id="rememberMe"
-                  name="rememberMe"
-                  label="Remeber me"
-                />
-              </Grid>
             </Grid>
 
 
@@ -165,17 +145,6 @@ export default function LoginForm({ props }) {
             >
               Login
             </Button>
-
-
-            <Grid container justify="flex-end">
-              <Grid item>
-                <Typography>
-                  <Link to="/auth/register" variant="body2">
-                    Don't have an account? Register
-                  </Link>
-                </Typography>
-              </Grid>
-            </Grid>
           </form>
         )
       }}

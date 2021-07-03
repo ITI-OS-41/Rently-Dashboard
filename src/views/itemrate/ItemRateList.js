@@ -70,8 +70,7 @@ export default () => {
       field: 'item', headerName: 'Item',
       width: `${DATAGRID_WIDTH * 0.2}px`,
       renderCell: (params) => {
-        return (params.row.item.username)
-        // console.log("owner -> : ",params.row)
+        return (params.row.item.name)
       },
     },
 

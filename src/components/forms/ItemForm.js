@@ -11,6 +11,7 @@ import SubmitButton from '../shared/SubmitButton';
 import { uploadImage } from 'functions/helpers';
 import Switch from '@material-ui/core/Switch';
 import toast from '../../functions/toast';
+import ImageUploader from "../shared/ImageUploader";
 
 
 const modelName = 'item';
@@ -22,6 +23,9 @@ const validationSchema = yup.object().shape({
     owner: yup
         .string('Enter owner')
         .required('owner is required'),
+    photo: yup
+        .array('Enter photos')
+        .required('photos is required'),
     category: yup
         .string('Enter category')
         .required('category is required'),
@@ -46,12 +50,21 @@ const validationSchema = yup.object().shape({
     cancellation: yup
         .string('Enter cancellation')
         .required('cancellation is required'),
-    deliverable: yup
-        .string('Enter deliverable')
-        .required('deliverable is required'),
+    isDeliverable: yup
+        .string('Enter isDeliverable')
+        .required('isDeliverable is required'),
+    isAvailable: yup
+        .string('Enter isAvailable')
+        .required('isAvailable is required'),
+    isPublished: yup
+        .string('Enter isPublished')
+        .required('isPublished is required'),
     deposit: yup
         .string('Enter deposit')
         .required('deposit is required'),
+    price: yup
+        .string('Enter price')
+        .required('price is required'),
 })
 
 
@@ -59,32 +72,35 @@ const validationSchema = yup.object().shape({
 export default function NotificationForm(props) {
     const { data, type } = props;
     const initialValues = {
-        photo: data?.photo || '',
+        photo: data?.photo || [],
         owner: data?.owner?._id || '60c77b82af8cc2f12a031a4e',
         category: data?.category?._id || '60c7b0ae4530040015709bc3',
         subcategory: data?.subcategory?._id || '60c7dac16900f400157cf460',
         condition: data?.condition || 'perfect',
         status: data?.status || true,
-        name: data?.name || 'ىثص ',
+        name: data?.name || 'safas ',
         stock: data?.stock || 9,
         description: data?.description || 'asdasd',
-        // location: data?.location || {},
+        location: data?.location || {},
         cancellation: data?.cancellation || "Strict",
-        deliverable: data?.deliverable || true,
         deposit: data?.deposit || 99,
-        price: data?.price || { hour: 6, day: 1, week: 2, month: 3 }
+        price: data?.price || { hour: 0, day: 0, week: 0, month: 0 },
+        isAvailable: data?.isAvailable || false,
+        isDeliverable: data?.isDeliverable || true,
+        isPublished: data?.isPublished || true,
     };
+
+
     let [formValues, setFormValues] = useState(initialValues);
 
     const [isRequesting, setIsRequesting] = useState(false)
-    const [imagePreview, setImagePreview] = useState(null)
     const [users, setUsers] = React.useState([]);
     const [categorys, setCategorys] = React.useState([]);
     const [subcategorys, setSubcategorys] = React.useState([]);
 
 
     useEffect(() => {
-        get('/user')
+        get('/user/top')
             .then(response => {
                 setUsers(response.data)
             })
@@ -93,7 +109,7 @@ export default function NotificationForm(props) {
     useEffect(() => {
         get('/category')
             .then(response => {
-                setCategorys(response.data)
+                setCategorys(response.data.res)
             })
     }, [])
 
@@ -101,18 +117,10 @@ export default function NotificationForm(props) {
         console.log("subcategory use effect")
         get(`/subcategory?category=${formValues.category}`)
             .then(response => {
-                setSubcategorys(response.data)
+                setSubcategorys(response.data.res)
             })
     }, [formValues])
 
-
-
-    const setImage = (event) => {
-        const file = event.currentTarget.files[0]
-        if (file) {
-            setImagePreview(URL.createObjectURL(file))
-        }
-    };
 
 
     const submitForm = async (values) => {
@@ -122,21 +130,25 @@ export default function NotificationForm(props) {
         values.stock = values.stock.toString();
         values.deposit = values.deposit.toString();
         values.status = values.status.toString()
-        values.deliverable = values.deliverable.toString()
+        values.isDeliverable = values.isDeliverable.toString()
+        values.isPublished = values.isPublished.toString()
+        values.isAvailable = values.isAvailable.toString()
+        values.isSubmitted = false
 
-        // ! TODO: Price and location
-        values.location = {
-            type: "Point",
-            coordinates: [1, 2],
-            address: "asd"
-        }
+        if (values.photo.length) {
+            let images = [];
 
+            for (let i = 0; i < values.photo.length; i++) {
+                await uploadImage(values.photo, modelName)
+                    .then(res => {
+                        images.push(res.data.url)
+                    })
+                    .catch(e=>{
+                        console.log(e)
+                    })
+            }
 
-        if (values.photo) {
-            await uploadImage(values.photo, modelName)
-                .then(res => {
-                    values.photo = res.data.url
-                })
+            values.photo = images;
         }
 
         post(
@@ -184,15 +196,10 @@ export default function NotificationForm(props) {
                 return (
                     <form onSubmit={handleSubmit}>
                         <Grid container spacing={2}>
-                            {(imagePreview || values.photo) && (<img src={imagePreview || values.photo || ''} height="250" />)}
+                            <ImageUploader multiple={true} onSubmit={images=>{
+                                setFieldValue('photo', images)
+                            }}/>
 
-                            <Grid item xs={12}>
-                                <input id="photo" name="photo" type="file" onChange={(event) => {
-                                    setFieldValue('photo', event.currentTarget.files[0])
-                                    setImage(event)
-                                }
-                                } />
-                            </Grid>
 
                             <Grid item xs={12}>
                                 <FormControl
@@ -354,14 +361,48 @@ export default function NotificationForm(props) {
                                 <FormControlLabel
                                     control={
                                         <Switch
-                                            checked={values.deliverable}
-                                            onChange={handleChange}
-                                            name="deliverable"
+                                            checked={values.isAvailable}
+                                            onChange={e=>{
+                                                setFieldValue('isAvailable',e.target.value)}
+                                            }
+                                            name="isAvailable"
                                             color="primary"
                                         />
                                     }
-                                    label="deliverable"
-                                    error={touched.deliverable && Boolean(errors.deliverable)} helperText={touched.deliverable && errors.deliverable}
+                                    label="isAvailable"
+                                    error={touched.isAvailable && Boolean(errors.isAvailable)} helperText={touched.isAvailable && errors.isAvailable}
+                                />
+                            </Grid>
+
+
+                            <Grid item xs={12}>
+                                <FormControlLabel
+                                    control={
+                                        <Switch
+                                            checked={values.isDeliverable}
+                                            onChange={handleChange}
+                                            name="isDeliverable"
+                                            color="primary"
+                                        />
+                                    }
+                                    label="isDeliverable"
+                                    error={touched.isDeliverable && Boolean(errors.isDeliverable)} helperText={touched.isDeliverable && errors.isDeliverable}
+                                />
+                            </Grid>
+
+
+                            <Grid item xs={12}>
+                                <FormControlLabel
+                                    control={
+                                        <Switch
+                                            checked={values.isPublished}
+                                            onChange={handleChange}
+                                            name="isPublished"
+                                            color="primary"
+                                        />
+                                    }
+                                    label="isPublished"
+                                    error={touched.isPublished && Boolean(errors.isPublished)} helperText={touched.isPublished && errors.isPublished}
                                 />
                             </Grid>
 
