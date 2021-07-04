@@ -18,7 +18,7 @@ const MapWithAMarker = compose(
     withScriptjs,
     withGoogleMap
 )(props => {
-    const {current,...rest}= props;
+    const {current,changeCoordinates,...rest}= props;
 
         const [pos, setPos] = useState({lat: current.lat||0, lng: current.lng||0});
         const [address, setAddress] = useState("");
@@ -26,7 +26,6 @@ const MapWithAMarker = compose(
         useEffect(() => {
             Geocode.fromLatLng(pos.lat, pos.lng).then(
                 response => {
-                    console.log(response)
                     setAddress(response.results[0].formatted_address)
                 },
                 error => {
@@ -38,17 +37,21 @@ const MapWithAMarker = compose(
         }, [pos]);
 
         useEffect(() => {
-            if(!pos.lat){
+            if(!current.lat){
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(position => {
                         setPos({
                             lat: position.coords.latitude,
                             lng: position.coords.longitude,
                         })
+                        props.changeCoordinates(pos,address)
                     });
                 } else {
                     alert("Geolocation is not supported by this browser!");
                 }
+            } else {
+                setPos({lat: current.lat||30, lng: current.lng||30})
+
             }
         }, []);
 

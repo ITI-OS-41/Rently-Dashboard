@@ -15,8 +15,8 @@ const post = async (url, data, successMessage) => await axios.post(url, data)
             }
         }
 
-        return errors
-        // throw new Error(errors)
+        // return errors
+        throw new Error(errors)
     })
 
 
@@ -32,8 +32,8 @@ const put = async (url, data, successMessage) => await axios.put(url, data)
                 toast.error(errors[key])
             }
         }
-        return errors
-        // throw new Error(errors)
+        // return errors
+        throw new Error(errors)
     })
 
 const patch = async (url, data, successMessage) => await axios.patch(url, data)
@@ -48,8 +48,8 @@ const patch = async (url, data, successMessage) => await axios.patch(url, data)
                 toast.error(errors[key])
             }
         }
-        return errors
-        // throw new Error(errors)
+        // return errors
+        throw new Error(errors)
     })
 
 const get = async (url, successMessage) => await axios.get(url)
@@ -64,8 +64,8 @@ const get = async (url, successMessage) => await axios.get(url)
                 toast.error(errors[key])
             }
         }
-        return errors
-        // throw new Error(errors)
+        // return errors
+        throw new Error(errors)
     })
 
 
@@ -81,8 +81,8 @@ const del = async (url, successMessage) => await axios.delete(url)
                 toast.error(errors[key])
             }
         }
-        return errors
-        // throw new Error(errors)
+        // return errors
+        throw new Error(errors)
     })
 
 export { post,patch, get, del, put }

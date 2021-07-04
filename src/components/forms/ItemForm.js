@@ -44,9 +44,6 @@ const validationSchema = yup.object().shape({
     owner: yup
         .string('Enter owner')
         .required('owner is required'),
-    // photo: yup
-    //     .string('Enter photos')
-    //     .required('photos is required'),
     category: yup
         .string('Enter category')
         .required('category is required'),
@@ -99,21 +96,24 @@ export default function ItemForm(props) {
     const { data, type } = props;
     const initialValues = {
         photo: data?.photo || [],
-        owner: data?.owner?._id || '60c77b82af8cc2f12a031a4e',
-        category: data?.category?._id || '60c7b0ae4530040015709bc3',
-        subcategory: data?.subcategory?._id || '60c7dac16900f400157cf460',
-        condition: data?.condition || 'perfect',
+        owner: data?.owner?._id || '',
+        category: data?.category?._id || '',
+        subcategory: data?.subcategory?._id || '',
+        condition: data?.condition || '',
         status: data?.status || true,
-        name: data?.name || 'safas ',
-        stock: data?.stock || 9,
-        description: data?.description || 'asdasd',
-        location: data?.location || {},
-        cancellation: data?.cancellation || "strict",
-        deposit: data?.deposit || 99,
+        name: data?.name || '',
+        stock: data?.stock || 1,
+        description: data?.description || '',
+        location: data?.location || {
+            "type":"Point",
+            "coordinates":[]
+        },
+        cancellation: data?.cancellation || "",
+        deposit: data?.deposit || 0,
         price: data?.price || {  },
         isAvailable: data?.isAvailable || false,
-        isDeliverable: data?.isDeliverable || true,
-        isPublished: data?.isPublished || true,
+        isDeliverable: data?.isDeliverable || false,
+        isPublished: data?.isPublished || false,
 
 
 
@@ -528,11 +528,11 @@ export default function ItemForm(props) {
 
 
                                 <Map
-                                    current={{lat: values.location.coordinates[0],lng: values.location.coordinates[1]}}
+                                    current={{lat: values?.location?.coordinates[0]?values?.location?.coordinates[0]:0,lng: values?.location?.coordinates[1]?values?.location?.coordinates[1]:0}}
                                     changeCoordinates={(pos,address)=>{setFieldValue("location",{
-                                    type:"Point",
-                                    coordinates:[pos.lat,pos.lng],
-                                    address:address
+                                        type:"Point",
+                                        coordinates:[pos.lat,pos.lng],
+                                        address:address
                                 })}}/>
 
                             </Grid>
