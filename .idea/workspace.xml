@@ -2,14 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e73bf5bc-9065-43f8-9413-c55f2caa9e21" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/shared/Map.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/forms/CategoryForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/CategoryForm.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/forms/ItemForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/ItemForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/forms/UserForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/UserForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/Index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/item/ItemList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/item/ItemList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/forms/ItemRateForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/ItemRateForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/shared/Map.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/shared/Map.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/apprate/AppRateList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/apprate/AppRateList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/blog/BlogList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/blog/BlogList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/category/CategoryList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/category/CategoryList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/faq/FAQList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/faq/FAQList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/item/ItemShow.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/item/ItemShow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/itemrate/ItemRateList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/itemrate/ItemRateList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/subcategory/SubCategoryList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/subcategory/SubCategoryList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/user/UserList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/user/UserList.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,7 +119,7 @@
       <workItem from="1625260317356" duration="10297000" />
       <workItem from="1625305486410" duration="11671000" />
       <workItem from="1625324613429" duration="855000" />
-      <workItem from="1625352763460" duration="4341000" />
+      <workItem from="1625352763460" duration="7290000" />
     </task>
     <servers />
   </component>
@@ -147,20 +151,20 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state width="1323" height="191" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1625273593183" />
-    <state x="1899" y="144" width="854" height="763" key="find.popup" timestamp="1625319727959">
-      <screen x="1366" y="0" width="1920" height="1050" />
+    <state x="379" y="101" width="607" height="536" key="find.popup" timestamp="1625361695492">
+      <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="379" y="101" width="607" height="536" key="find.popup/0.0.1366.738/-1920.-139.1920.1050@0.0.1366.738" timestamp="1624894398844" />
     <state x="1899" y="144" width="854" height="763" key="find.popup/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1625319727959" />
-    <state x="379" y="101" width="607" height="536" key="find.popup/0.0.1366.738@0.0.1366.738" timestamp="1624830943122" />
+    <state x="379" y="101" width="607" height="536" key="find.popup/0.0.1366.738@0.0.1366.738" timestamp="1625361695492" />
     <state x="339" y="165" key="run.anything.popup" timestamp="1625354801499">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="339" y="165" key="run.anything.popup/0.0.1366.738@0.0.1366.738" timestamp="1625354801499" />
-    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup" timestamp="1625358419921">
+    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup" timestamp="1625361865027">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="1852" y="84" width="945" height="965" key="search.everywhere.popup/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1625326104630" />
-    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup/0.0.1366.738@0.0.1366.738" timestamp="1625358419921" />
+    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup/0.0.1366.738@0.0.1366.738" timestamp="1625361865027" />
   </component>
 </project>

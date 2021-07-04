@@ -50,7 +50,7 @@ export default () => {
       })
   }
   useEffect(() => {
-    get(`/${modelName}`)
+    get(`/${modelName}?limit=9999`)
       .then(response => {
         let res = response.data.res
 

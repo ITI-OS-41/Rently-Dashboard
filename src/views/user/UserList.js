@@ -18,6 +18,7 @@ import { DATAGRID_RESULTS_PER_PAGE, DATAGRID_WIDTH } from "../../config";
 import { Link } from "react-router-dom";
 import UncontrolableSwitch from "components/shared/UncontrolableSwitch";
 import ListTableActions from "components/shared/ListTableActions";
+import ListTableThumbnail from "../../components/shared/ListTableThumbnail";
 
 const modelName = 'user';
 
@@ -40,9 +41,9 @@ export default () => {
   }
 
   useEffect(() => {
-    get(`/${modelName}`)
+    get(`/${modelName}/top?limit=9999`)
       .then(response => {
-        let res = response.data.res
+        let res = response.data
 
         res.map((res) => {
           res['id'] = res['_id']
@@ -60,9 +61,9 @@ export default () => {
 
     {
       field: 'photo', headerName: 'Photo',
-      width: `${DATAGRID_WIDTH * 0.1}px`,
+      width: `${DATAGRID_WIDTH * 0.07}px`,
       renderCell: (params) => {
-        return (params.row.photo && <img src={params.row.photo} height="50" />)
+        return (<ListTableThumbnail image={params.row.photo}/>)
       },
     },
     {

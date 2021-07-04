@@ -45,7 +45,7 @@ export default function ItemRateForm(props) {
     // const items = ["Item 1"];
 
     useEffect(() => {
-        get('/user')
+        get('/user/top')
             .then(response => {
                 setUsers(response.data)
             })
@@ -54,7 +54,7 @@ export default function ItemRateForm(props) {
     useEffect(() => {
         get('/item')
             .then(response => {
-                setItems(response.data)
+                setItems(response.data.res)
             })
     }, [])
 

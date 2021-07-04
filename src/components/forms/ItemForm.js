@@ -13,6 +13,7 @@ import Switch from '@material-ui/core/Switch';
 import toast from '../../functions/toast';
 import ImageUploader from "../shared/ImageUploader";
 import Map from "../shared/Map";
+import InputAdornment from "@material-ui/core/InputAdornment";
 
 
 const modelName = 'item';
@@ -87,9 +88,9 @@ const validationSchema = yup.object().shape({
     //     .required('price is required'),
 
 
-    priceDay: yup
-        .string('Enter priceDay')
-        .required('priceDay is required'),
+    // priceDay: yup
+    //     .string('Enter priceDay')
+    //     .required('priceDay is required'),
 })
 
 
@@ -413,10 +414,15 @@ export default function ItemForm(props) {
                                     id="priceDay"
                                     name="priceDay"
                                     label="priceDay"
-                                    inputProps={{
-                                        min: 0
+                                    InputProps={{
+                                        inputProps: { min: 0 },
+                                        startAdornment: (
+                                            <InputAdornment position="start">
+                                                EGP
+                                            </InputAdornment>
+                                        ),
                                     }}
-                                    value={values.price.day || values.priceDay}
+                                    value={values.priceDay||values.price.day}
                                     onChange={handleChange}
                                 />
                             </Grid>
@@ -430,10 +436,15 @@ export default function ItemForm(props) {
                                     id="priceWeek"
                                     name="priceWeek"
                                     label="priceWeek"
-                                    inputProps={{
-                                        min: 0
+                                    InputProps={{
+                                        inputProps: { min: 0 },
+                                        startAdornment: (
+                                            <InputAdornment position="start">
+                                                EGP
+                                            </InputAdornment>
+                                        ),
                                     }}
-                                    value={values.price.week || values.priceWeek}
+                                    value={values.priceWeek||values.price.week}
                                     onChange={handleChange}
                                 />
                             </Grid>
@@ -447,10 +458,15 @@ export default function ItemForm(props) {
                                     id="priceMonth"
                                     name="priceMonth"
                                     label="priceMonth"
-                                    inputProps={{
-                                        min: 0
+                                    InputProps={{
+                                        inputProps: { min: 0 },
+                                        startAdornment: (
+                                            <InputAdornment position="start">
+                                                EGP
+                                            </InputAdornment>
+                                        ),
                                     }}
-                                    value={values.price.month || values.priceMonth}
+                                    value={values.priceMonth||values.price.month}
                                     onChange={handleChange}
                                 />
                             </Grid>
