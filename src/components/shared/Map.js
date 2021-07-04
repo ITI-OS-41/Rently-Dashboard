@@ -51,7 +51,6 @@ const MapWithAMarker = compose(
                 }
             } else {
                 setPos({lat: current.lat||30, lng: current.lng||30})
-
             }
         }, []);
 

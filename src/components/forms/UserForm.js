@@ -76,7 +76,7 @@ export default function CategoryForm(props) {
         }
 
         post(
-            `${modelName}/${data?._id || ''}`,
+            `${modelName}/${type != 'edit' ? 'register' : ''}`,
             values, type === 'edit' ? `${modelName} edited successfully!` : `${modelName} added successfully!`
         )
             .then(response => {
