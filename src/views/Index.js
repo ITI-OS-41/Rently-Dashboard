@@ -41,6 +41,7 @@ const Index = (props) => {
   }
 
   const toggleNavs = (e, index) => {
+    console.log("chartExample1Data > ",chartExample1Data);
     e.preventDefault();
     setActiveNav(index);
     setChartExample1Data("data" + index);

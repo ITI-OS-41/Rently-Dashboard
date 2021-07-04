@@ -2,37 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e73bf5bc-9065-43f8-9413-c55f2caa9e21" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/shared/ImageUploader.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/shared/ListTableThumbnail.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/shared/Map.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Context.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Context.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Footers/AuthFooter.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footers/AuthFooter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/forms/BlogForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/BlogForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/forms/CategoryForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/CategoryForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/forms/FAQForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/FAQForm.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/forms/ItemForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/ItemForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/forms/LoginForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/LoginForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/forms/NotificationForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/NotificationForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/forms/SubCategoryForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/SubCategoryForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/functions/request.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/functions/request.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/functions/route-guards/AdminRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/functions/route-guards/AdminRoute.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/functions/route-guards/VisitorRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/functions/route-guards/VisitorRoute.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/forms/UserForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/UserForm.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/Index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/apprate/AppRateShow.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/apprate/AppRateShow.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/auth/Register.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/blog/BlogList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/blog/BlogList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/blog/BlogShow.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/blog/BlogShow.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/category/CategoryList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/category/CategoryList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/faq/FAQList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/faq/FAQList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/faq/FAQShow.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/faq/FAQShow.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/item/ItemList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/item/ItemList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/itemrate/ItemRateList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/itemrate/ItemRateList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/itemrate/ItemRateShow.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/itemrate/ItemRateShow.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/notification/NotificationList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/notification/NotificationList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/notification/NotificationShow.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/notification/NotificationShow.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/subcategory/SubCategoryCreate.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/subcategory/SubCategoryCreate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/subcategory/SubCategoryList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/subcategory/SubCategoryList.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +55,12 @@
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components/shared" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -131,7 +113,9 @@
       <workItem from="1624827285179" duration="3944000" />
       <workItem from="1624893939208" duration="1380000" />
       <workItem from="1625260317356" duration="10297000" />
-      <workItem from="1625305486410" duration="9498000" />
+      <workItem from="1625305486410" duration="11671000" />
+      <workItem from="1625324613429" duration="855000" />
+      <workItem from="1625352763460" duration="4341000" />
     </task>
     <servers />
   </component>
@@ -163,16 +147,20 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state width="1323" height="191" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1625273593183" />
-    <state x="1899" y="144" width="854" height="763" key="find.popup" timestamp="1625307417143">
+    <state x="1899" y="144" width="854" height="763" key="find.popup" timestamp="1625319727959">
       <screen x="1366" y="0" width="1920" height="1050" />
     </state>
     <state x="379" y="101" width="607" height="536" key="find.popup/0.0.1366.738/-1920.-139.1920.1050@0.0.1366.738" timestamp="1624894398844" />
-    <state x="1899" y="144" width="854" height="763" key="find.popup/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1625307417143" />
+    <state x="1899" y="144" width="854" height="763" key="find.popup/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1625319727959" />
     <state x="379" y="101" width="607" height="536" key="find.popup/0.0.1366.738@0.0.1366.738" timestamp="1624830943122" />
-    <state x="1852" y="84" width="945" height="965" key="search.everywhere.popup" timestamp="1625312489834">
-      <screen x="1366" y="0" width="1920" height="1050" />
+    <state x="339" y="165" key="run.anything.popup" timestamp="1625354801499">
+      <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="1852" y="84" width="945" height="965" key="search.everywhere.popup/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1625312489834" />
-    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup/0.0.1366.738@0.0.1366.738" timestamp="1625272824415" />
+    <state x="339" y="165" key="run.anything.popup/0.0.1366.738@0.0.1366.738" timestamp="1625354801499" />
+    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup" timestamp="1625358419921">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="1852" y="84" width="945" height="965" key="search.everywhere.popup/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1625326104630" />
+    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup/0.0.1366.738@0.0.1366.738" timestamp="1625358419921" />
   </component>
 </project>

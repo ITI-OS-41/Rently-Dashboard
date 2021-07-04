@@ -12,20 +12,40 @@ import { uploadImage } from 'functions/helpers';
 import Switch from '@material-ui/core/Switch';
 import toast from '../../functions/toast';
 import ImageUploader from "../shared/ImageUploader";
+import Map from "../shared/Map";
 
 
 const modelName = 'item';
 const conditions = ["perfect", "very good", "descent", "good", "fair"];
-const cancellations = ["Easygoing", "Reasonable", "Strict"];
+const cancellations = ["easygoing", "reasonable", "strict"];
 
+
+
+/*{
+    "category": "60d2766707a7ce4028dd6356",
+    "isAvailable": "true",
+    "isPublished": false,
+    "isSubmitted":"true",
+    "subcategory": "60d443ad4c87113990b5c9b4",
+    "name": "catttttttttttty",
+    "description": "description field is required",
+    "stock": "3" ,
+    "condition": "descent",
+    "deposit": "3",
+    "photo":["https://res.cloudinary.com/rently-service/image/upload/v1624968578/item/195273491_337552051064053_4110566312842753444_n_yzkqdk.jpg"],
+    "isDeliverable": false,
+    "cancellation": "strict",
+    "price": {"day":"12","week":"56","month":""},
+    "location":{"type":"Point","coordinates":[12,30]}
+}*/
 
 const validationSchema = yup.object().shape({
     owner: yup
         .string('Enter owner')
         .required('owner is required'),
-    photo: yup
-        .array('Enter photos')
-        .required('photos is required'),
+    // photo: yup
+    //     .string('Enter photos')
+    //     .required('photos is required'),
     category: yup
         .string('Enter category')
         .required('category is required'),
@@ -62,14 +82,19 @@ const validationSchema = yup.object().shape({
     deposit: yup
         .string('Enter deposit')
         .required('deposit is required'),
-    price: yup
-        .string('Enter price')
-        .required('price is required'),
+    // price: yup
+    //     .string('Enter price')
+    //     .required('price is required'),
+
+
+    priceDay: yup
+        .string('Enter priceDay')
+        .required('priceDay is required'),
 })
 
 
 
-export default function NotificationForm(props) {
+export default function ItemForm(props) {
     const { data, type } = props;
     const initialValues = {
         photo: data?.photo || [],
@@ -82,12 +107,18 @@ export default function NotificationForm(props) {
         stock: data?.stock || 9,
         description: data?.description || 'asdasd',
         location: data?.location || {},
-        cancellation: data?.cancellation || "Strict",
+        cancellation: data?.cancellation || "strict",
         deposit: data?.deposit || 99,
-        price: data?.price || { hour: 0, day: 0, week: 0, month: 0 },
+        price: data?.price || {  },
         isAvailable: data?.isAvailable || false,
         isDeliverable: data?.isDeliverable || true,
         isPublished: data?.isPublished || true,
+
+
+
+        priceDay: data?.price?.day || 0,
+        priceWeek: data?.price?.week || 0,
+        priceMonth: data?.price?.month || 0,
     };
 
 
@@ -97,6 +128,7 @@ export default function NotificationForm(props) {
     const [users, setUsers] = React.useState([]);
     const [categorys, setCategorys] = React.useState([]);
     const [subcategorys, setSubcategorys] = React.useState([]);
+    const [uploadedNewPhoto, setUploadedNewPhoto] = React.useState(false);
 
 
     useEffect(() => {
@@ -126,6 +158,11 @@ export default function NotificationForm(props) {
     const submitForm = async (values) => {
         setIsRequesting(true);
 
+        console.log('hsn ',{values})
+
+        // set prices
+        values.stock = values.stock.toString();
+
 
         values.stock = values.stock.toString();
         values.deposit = values.deposit.toString();
@@ -135,11 +172,15 @@ export default function NotificationForm(props) {
         values.isAvailable = values.isAvailable.toString()
         values.isSubmitted = false
 
-        if (values.photo.length) {
+        values.price.day = values.priceDay && values.priceDay
+        values.price.week = values.priceWeek && values.priceWeek
+        values.price.month = values.priceMonth && values.priceMonth
+
+        if (uploadedNewPhoto) {
             let images = [];
 
             for (let i = 0; i < values.photo.length; i++) {
-                await uploadImage(values.photo, modelName)
+                await uploadImage(values.photo[i], modelName)
                     .then(res => {
                         images.push(res.data.url)
                     })
@@ -156,9 +197,12 @@ export default function NotificationForm(props) {
             values, type === 'edit' ? `${modelName} edited successfully!` : `${modelName} added successfully!`
         )
             .then(response => {
+                console.log(response)
                 history.push(`/admin/${modelName}`);
             })
-            .catch(error => { })
+            .catch(error => {
+                console.log(error)
+            })
             .finally(() => {
                 setIsRequesting(false);
             })
@@ -197,8 +241,13 @@ export default function NotificationForm(props) {
                     <form onSubmit={handleSubmit}>
                         <Grid container spacing={2}>
                             <ImageUploader multiple={true} onSubmit={images=>{
-                                setFieldValue('photo', images)
-                            }}/>
+                                setFieldValue('photo', images);
+                                setUploadedNewPhoto(true)
+                            }}
+                           current={values.photo}
+
+                            />
+                            {touched.photo && <FormHelperText>{errors.photo}</FormHelperText>}
 
 
                             <Grid item xs={12}>
@@ -356,15 +405,63 @@ export default function NotificationForm(props) {
                                 <TextField variant="outlined" type="number" fullWidth id="stock" name="stock" label="stock" value={values.stock} onBlur={handleBlur} onChange={handleChange} error={touched.stock && Boolean(errors.stock)} helperText={touched.stock && errors.stock} />
                             </Grid>
 
+                            <Grid item xs={4}>
+                                <TextField
+                                    variant="outlined"
+                                    type="number"
+                                    fullWidth
+                                    id="priceDay"
+                                    name="priceDay"
+                                    label="priceDay"
+                                    inputProps={{
+                                        min: 0
+                                    }}
+                                    value={values.price.day || values.priceDay}
+                                    onChange={handleChange}
+                                />
+                            </Grid>
+
+
+                            <Grid item xs={4}>
+                                <TextField
+                                    variant="outlined"
+                                    type="number"
+                                    fullWidth
+                                    id="priceWeek"
+                                    name="priceWeek"
+                                    label="priceWeek"
+                                    inputProps={{
+                                        min: 0
+                                    }}
+                                    value={values.price.week || values.priceWeek}
+                                    onChange={handleChange}
+                                />
+                            </Grid>
+
+
+                            <Grid item xs={4}>
+                                <TextField
+                                    variant="outlined"
+                                    type="number"
+                                    fullWidth
+                                    id="priceMonth"
+                                    name="priceMonth"
+                                    label="priceMonth"
+                                    inputProps={{
+                                        min: 0
+                                    }}
+                                    value={values.price.month || values.priceMonth}
+                                    onChange={handleChange}
+                                />
+                            </Grid>
+
 
                             <Grid item xs={12}>
                                 <FormControlLabel
                                     control={
                                         <Switch
                                             checked={values.isAvailable}
-                                            onChange={e=>{
-                                                setFieldValue('isAvailable',e.target.value)}
-                                            }
+                                            onChange={handleChange}
                                             name="isAvailable"
                                             color="primary"
                                         />
@@ -410,6 +507,19 @@ export default function NotificationForm(props) {
                             <Grid item xs={12}>
                                 <TextField variant="outlined" type="number" fullWidth id="deposit" name="deposit" label="deposit" value={values.deposit} onBlur={handleBlur} onChange={handleChange} error={touched.deposit && Boolean(errors.deposit)} helperText={touched.deposit && errors.deposit} />
                             </Grid>
+
+                            <Grid item xs={12}>
+
+
+                                <Map
+                                    current={{lat: values.location.coordinates[0],lng: values.location.coordinates[1]}}
+                                    changeCoordinates={(pos,address)=>{setFieldValue("location",{
+                                    type:"Point",
+                                    coordinates:[pos.lat,pos.lng],
+                                    address:address
+                                })}}/>
+
+                            </Grid>
                         </Grid>
 
                         <Grid container justify="flex-end">
@@ -428,7 +538,7 @@ export default function NotificationForm(props) {
 
 
 // Set default props
-NotificationForm.defaultProps = {
+ItemForm.defaultProps = {
     data: null,
     type: "create"
 };

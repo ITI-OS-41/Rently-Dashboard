@@ -15,6 +15,9 @@ const validationSchema = yup.object().shape({
     name: yup
         .string('Enter name')
         .required('name is required'),
+    photo: yup
+        .string('Enter photo')
+        .required('photo is required'),
     description: yup
         .string('Enter description')
         .required('description is required'),
@@ -44,7 +47,6 @@ export default function CategoryForm(props) {
     };
     const submitForm = async (values) => {
         setIsRequesting(true);
-
 
         if (values.photo) {
             await uploadImage(values.photo, modelName)

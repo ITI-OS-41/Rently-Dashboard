@@ -41,7 +41,7 @@ export default () => {
   }
 
   useEffect(() => {
-    get(`/${modelName}`)
+    get(`/${modelName}?limit=9999`)
       .then(response => {
         let res = response.data.res
 
@@ -76,15 +76,15 @@ export default () => {
 
   const columns = [
     {
-      field: 'photo', headerName: 'photo', width: `${DATAGRID_WIDTH * 0.1}px`,
+      field: 'photo', headerName: 'photo', width: `${DATAGRID_WIDTH * 0.07}px`,
       renderCell: (params) => {
-        return (<ListTableThumbnail image={params.row.photo}/>);
+        return (<ListTableThumbnail image={params.row.photo[0]}/>);
       },
     },
     { field: 'name', headerName: 'name', width: `${DATAGRID_WIDTH * 0.1}px` },
     {
       field: 'owner', headerName: 'owner',
-      width: `${DATAGRID_WIDTH * 0.15}px`,
+      width: `${DATAGRID_WIDTH * 0.10}px`,
       renderCell: (params) => {
         return (params.row.owner.username)
       },
@@ -106,10 +106,10 @@ export default () => {
       },
     },
     {
-      field: 'status', headerName: 'status', width: `${DATAGRID_WIDTH * 0.1}px`,
+      field: 'isAvailable', headerName: 'isAvailable', width: `${DATAGRID_WIDTH * 0.1}px`,
       renderCell: (params) => {
         return (
-          UncontrolableSwitch(params.row.status)
+          UncontrolableSwitch(params.row.isAvailable)
         )
       }
     },
@@ -122,7 +122,7 @@ export default () => {
       renderCell: (params) => {
         return (
           <>
-            <ListTableActions modelName={modelName} id={params._id} handleDelete={handleDelete} />
+            <ListTableActions modelName={modelName} id={params.row._id} handleDelete={handleDelete} />
           </>
         );
       }
